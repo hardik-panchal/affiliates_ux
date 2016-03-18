@@ -6,8 +6,19 @@ $urlArgs = _cg("url_vars");
 include _PATH . "instance/front/tpl/affiliate_edit.php";
 if ($_REQUEST['getfilter'] == 1) {
     $search = $_REQUEST['search'];
-    $query = "select * from affiliates where farmout_name like '%{$search}%' OR affiliate_city like '%{$search}%' OR affiliate_vehicle like '%{$search}%'";
-    $data = q($query);
+
+    $serch_keyword = explode(" ", $search);
+    $result = array();
+    foreach ($serch_keyword as $value) {
+        $query = "select * from affiliates where search like '%{$value}%' ";
+        $data = q($query);
+        $result[] = $data;
+    }
+
+    $data = array();
+    foreach ($result as $value) {
+        $data[] = $value[0];
+    }
 
 //d($query);
     include _PATH . "instance/front/tpl/home_data.php";

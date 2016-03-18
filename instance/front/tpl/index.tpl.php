@@ -23,14 +23,14 @@
         </style>
     </head>
     <body>
-        <div class="">            
+        <div class="" >            
             <?php if ($no_visible_elements) : ?>
                 <?php include $modulePage; ?>
             <?php else: ?> 
                 <?php include_once('left.php'); ?>
                 <div class="container" style="margin-top: 66px;">                    
                     <div class="row">                        
-                        <div id="div_main_content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content_body">
+                        <div id="div_main_content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content_body" style="box-shadow:2px 2px 5px 2px #004e99;">
                             <?php if (!(@include $modulePage)) : ?>
                                 <?php include "404.php"; ?>
                             <?php endif; ?>

@@ -45,8 +45,8 @@
                             </div>
                         <?php } ?>
                         <div class="brand">
-                            <div style="font-family: verdana; font-size: 30px; color: #70A3D2;">BiOptimizers</div>
-                            <div style="font-family: verdana; font-size: 14px; color: #70A3D2;">VIP Employees Login</div>
+                            <div style="font-family: verdana; font-size: 30px; color: #70A3D2;">Brilliant </div>
+                            <div style="font-family: verdana; font-size: 14px; color: #70A3D2;">Affiliates Login</div>
                             
                         </div>
 

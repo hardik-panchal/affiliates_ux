@@ -1,4 +1,12 @@
-<?php
+
+<style>
+    .text-capitalize{
+        text-transform:uppercase;
+    }
+    .font-weight-bold{
+        font-weight: bold;  
+    }
+</style><?php
 if (!empty($data)):
     ?> 
 
@@ -38,47 +46,84 @@ if (!empty($data)):
                 </div>
 
             </div>
-            <div class="col-md-8 col-lg-8">
-                <?php
-                $vehicle = q("select * from affiliate_vehicles where aff_id='{$each_data['id']}'");
-                $count = count($vehicle);
-                if (!$vehicle) {
-                    ?>
-                    <strong> Vehicle not Avilable!</strong>
+            <div class="col-md-8 col-lg-8 table-responsive">
+                <table class="table table-condensed table-hover ">
+                    <tr>
+                        <th style="font-size:18px;">Vehicle Name</th>    
+                        <th style="font-size:18px;">$/Hour</th>    
+                        <th style="font-size:18px;">Minimum Hours</th>    
+                    </tr>
+
                     <?php
-                }
+                    $vehicle = q("select * from affiliate_vehicles where aff_id='{$each_data['id']}'");
+                    $count = count($vehicle);
+                    if (!$vehicle) {
+                        ?>
+                        <tr>
+                            <th colspan="3"><strong> Vehicle not Avilable!</strong></th>
+                        </tr>
 
+                        <?php
+                    }
 
-                foreach ($vehicle as $each_vehicle):
+                    foreach ($vehicle as $each_vehicle):
+                        ?>
+                        <tr>
+                            <td class="text-capitalize text-success font-weight-bold">
+                                <?php print $each_vehicle['vehicle']; ?> 
+                            </td>
+                            <td>
+                                <?php
+                                if ($each_vehicle['rate_per_hour']) {
+                                    print '$' . $each_vehicle['rate_per_hour'] . ' / Hours';
+                                } else {
+                                    print 'N/A / Hours';
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                if ($each_vehicle['minimum']) {
+                                    print $each_vehicle['minimum'] . ' hours min';
+                                } else {
+                                    print 'N/A  hours min';
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+                <?php foreach ($vehicle as $each_vehicle):
                     ?>
-                    <div class="col-md-4 col-lg-4">
-                        <div class="panel panel-default ">
-                            <div class="panel-heading " style="padding-left: 20px;font-size: 14px;">
-                                <b> <?php print $each_vehicle['vehicle']; ?> </b>
-                            </div>
-                            <div id="filterdate" class="panel-body" style="font-size: 12px;color: grey;padding-left: 30px;">
-                                <b><?php
-                                    if ($each_vehicle['rate_per_hour']) {
-                                        print '$' . $each_vehicle['rate_per_hour'] . ' / Hours';
-                                    } else {
-                                        print 'N/A / Hours';
-                                    }
-                                    ?>
-                                    <br>  
-                                    <?php
-                                    if ($each_vehicle['minimum']) {
-                                        print $each_vehicle['minimum'] . ' hours min';
-                                    } else {
-                                        print 'N/A  hours min';
-                                    }
-                                    ?>
-                                </b>
-                            </div>
-                        </div>
-                    </div>
+                    <!--                    <div class="col-md-4 col-lg-4">
+                                            <div class="panel panel-default ">
+                                                <div class="panel-heading " style="padding-left: 20px;font-size: 14px;">
+                                                    <b> <?php print $each_vehicle['vehicle']; ?> </b>
+                                                </div>
+                                                <div id="filterdate" class="panel-body" style="font-size: 12px;color: grey;padding-left: 30px;">
+                                                    <b><?php
+                    if ($each_vehicle['rate_per_hour']) {
+                        //  print '$' . $each_vehicle['rate_per_hour'] . ' / Hours';
+                    } else {
+                        //  print 'N/A / Hours';
+                    }
+                    ?>
+                                                        <br>  
+                    <?php
+                    if ($each_vehicle['minimum']) {
+                        // print $each_vehicle['minimum'] . ' hours min';
+                    } else {
+                        //  print 'N/A  hours min';
+                    }
+                    ?>
+                                                    </b>
+                                                </div>
+                                            </div>
+                                        </div>-->
 
 
-        <?php endforeach; ?>
+                <?php endforeach; ?>
+                </table>
             </div>
             <div class="clearfix"></div>
             <div style="font-size: 14px;color: maroon;background-color: #faedba;line-height: 30px;padding-left:20px;margin-top: 50px"><b>Note : Good Drivers | Doble Check Billing </b> </div>
