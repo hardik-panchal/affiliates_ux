@@ -9,17 +9,14 @@ if ($_REQUEST['getfilter'] == 1) {
 
     $serch_keyword = explode(" ", $search);
     $result = array();
+    $where = '';
     foreach ($serch_keyword as $value) {
-        $query = "select * from affiliates where search like '%{$value}%' ";
-        $data = q($query);
-        $result[] = $data;
+        $where = $where . " search like '%{$value}%' And";
     }
-
-    $data = array();
-    foreach ($result as $value) {
-        $data[] = $value[0];
-    }
-
+    $where = rtrim($where, 'And');
+    $query = "select * from affiliates where {$where}";
+    $data = q($query);
+    // $data=  array_unique($data);
 //d($query);
     include _PATH . "instance/front/tpl/home_data.php";
     die;

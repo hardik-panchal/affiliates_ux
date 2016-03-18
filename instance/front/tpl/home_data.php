@@ -12,7 +12,7 @@ if (!empty($data)):
 
     <?php foreach ($data as $each_data): ?>
 
-        <div class="panel panel-default" style="padding-top: 10px;margin-top:20px;background-color:white;box-shadow:0 1px 0 rgba(0, 0, 0, 0.4);width:87%;margin-left:30px">
+        <div class="panel panel-default" style="padding-top: 10px;margin-top:20px;background-color:white;box-shadow:0 1px 0 rgba(0, 0, 0, 0.4);">
             <div class="col-md-4 col-lg-4" style="padding-left:20px">
                 <div  style="font-size: 17px;color:black;padding-top:1px;">
                     <strong> <?php print $each_data['farmout_name']; ?></strong>
