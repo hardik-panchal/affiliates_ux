@@ -1,7 +1,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         CallAllFunctionAtRefresh();
-        $("#search").val('sky');
+        $("#search").val();
         search();
     });
     function search() {
