@@ -1,15 +1,42 @@
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         CallAllFunctionAtRefresh();
         $("#search").val();
         search();
     });
+
+    function editOnMouseHover(id, field)
+    {
+        var value;
+        if (field = 'vehicle')
+        {
+            value = $.trim($("#vehicle" + id).html());
+
+        } else if (field == 'rate_per_hour')
+        {
+            value = $.trim($("#rate_per_hour" + id).html());
+        } else if (field == 'minimum')
+        {
+            value = $.trim($("#minimum" + id).html());
+        }
+        $.ajax({
+            url: _U + 'home',
+            data: {editOnMouseHover: 1, id: id, field: field, value: value},
+            success: function (r) {
+                if (r > 0)
+                {
+                    _success("Affiliates Has Been Updated Successfully..");
+                }
+                search();
+            }
+        });
+    }
     function search() {
 //        showWait();
         $.ajax({
             url: _U + 'home',
             data: {getfilter: 1, search: $("#search").val()},
-            success: function(r) {
+            success: function (r) {
 //                hideWait();
 //                alert(r);
                 $("#searchList").html(r);
@@ -32,7 +59,7 @@
             $.ajax({
                 url: _U + 'home',
                 data: {addCity: 1, city: city},
-                success: function(r) {
+                success: function (r) {
                     hideWait();
                     $("#AddCity").modal('hide');
 
@@ -61,7 +88,7 @@
             $.ajax({
                 url: _U + 'home',
                 data: {addAffiliate: 1, affiliate: affiliate, address: address, contact: contact, city: city},
-                success: function(r) {
+                success: function (r) {
                     hideWait();
                     $("#AddAffiliates").modal('hide');
                 }
@@ -81,10 +108,10 @@
             url: _U + 'home/<?php print $urlArgs[0] ?>',
             /*dataType: 'json',*/
             data: {AddaffiliatesPopup: 1},
-            success: function(r) {
+            success: function (r) {
                 $("#affiliates_modal_content").html(r);
                 $("#AddAffiliates").modal('show');
-                $(function() {
+                $(function () {
                     $("#accordion").accordion({
                         heightStyle: "content"
                     });
@@ -100,23 +127,23 @@
     }
     function AddAffiliates(edit_id) {
 
-
+        var city = $("#cityAffiliates option:selected").val();
         //Service Area
         var chkServiceArea = [];
-        $('#chk_service_area:checked').each(function(i, e) {
+        $('#chk_service_area:checked').each(function (i, e) {
             chkServiceArea.push(e.value);
         });
         //Amenity
         $(".chk_other_amenity_type").val($("#otheramenityservice").val());
         var chkAmenityType = [];
-        $('#chk_amenity_type:checked').each(function(i, e) {
+        $('#chk_amenity_type:checked').each(function (i, e) {
             chkAmenityType.push(e.value);
         });
 
         //Servicetype
         $(".chk_other_type").val($("#otherservice").val());
         var selectval = [];
-        $('#chk_service_type:checked').each(function(i) {
+        $('#chk_service_type:checked').each(function (i) {
             selectval[i] = $(this).val();
         });
         if ($("#farmout").val() == '') {
@@ -144,6 +171,7 @@
                     farmout_name: $("#farmout").val(),
                     service_area: chkServiceArea,
                     address: $("#address").val(),
+                    cityName: city,
                     contact_name: $("#contact_name").val(),
                     contact_number: $("#contact_number").val(),
                     contact_email: $("#contact_email").val(),
@@ -157,7 +185,7 @@
                     expiration_date: $("#txt_expiration_date").val(),
                     edit_id: edit_id
                 },
-                success: function(r) {
+                success: function (r) {
                     if (edit_id > 0) {
                         _success("Affiliates Has Been Updated Successfully");
                     } else {
@@ -177,7 +205,7 @@
                         $.ajax({
                             url: _U + 'affiliates_detail',
                             data: {Getafflist: 1, affId: edit_id},
-                            success: function(r) {
+                            success: function (r) {
                                 hideWait();
                                 $("#affiliatesList").html(r);
                             }
@@ -187,7 +215,7 @@
                         $.ajax({
                             url: _U + 'affiliates',
                             data: {Getafflist: 1, city: $("#city").val()},
-                            success: function(r) {
+                            success: function (r) {
                                 hideWait();
                                 $("#affiliatesList").html(r);
                                 $("#AffiliatesTab").click();
@@ -201,7 +229,7 @@
         }
     }
     function DatePickerBlock() {
-        $(document).ready(function() {
+        $(document).ready(function () {
             /*
              $("#datepicker").datepicker({
              changeMonth: true,
@@ -237,7 +265,7 @@
         var hour_rate = $("#hour_rate").val();
         var affiliateVehicle = $("#affiliateVehicle option:selected").val();
 
-        if (vehicle == '' || affiliateVehicle == '' || vehicle_no == '' ||min_rate == '' || hour_rate == '')
+        if (vehicle == '' || affiliateVehicle == '' || vehicle_no == '' || min_rate == '' || hour_rate == '')
         {
             alert("Plz fill up the field");
             return false;
@@ -246,8 +274,8 @@
 
             $.ajax({
                 url: _U + 'home',
-                data: {addvehicle: 1, affiliateVehicle: affiliateVehicle, vehicle: vehicle, vehicle_no:vehicle_no,min_rate:min_rate,hour_rate:hour_rate},
-                success: function(r) {
+                data: {addvehicle: 1, affiliateVehicle: affiliateVehicle, vehicle: vehicle, vehicle_no: vehicle_no, min_rate: min_rate, hour_rate: hour_rate},
+                success: function (r) {
                     hideWait();
                     $("#AddVehicles").modal('hide');
                 }
@@ -259,7 +287,7 @@
             $.ajax({
                 url: _U + 'home',
                 data: {delete_attachment_file: 1, file_name: file_name, file_id: file_id},
-                type: 'post', success: function(r) {
+                type: 'post', success: function (r) {
 
                     if (r != '') {
 
@@ -284,37 +312,37 @@
     }
     function AllFileAttachment() {
         /* Start Code Of File Uploading */
-        $(document).ready(function() {
+        $(document).ready(function () {
 
-            $('#insurance_attachment_1').change(function() {
+            $('#insurance_attachment_1').change(function () {
                 if ($.trim($('#insurance_attachment_1').val()) != '') {
                     $("#insurance_attachment_upload").click();
                 }
             });
-            $('#other_attachment_1').change(function() {
+            $('#other_attachment_1').change(function () {
 
                 if ($.trim($('#other_attachment_1').val()) != '') {
                     $("#other_attachment_upload").click();
                 }
             });
-            $('#vehicle_attachment_1').change(function() {
+            $('#vehicle_attachment_1').change(function () {
 
                 if ($.trim($('#vehicle_attachment_1').val()) != '') {
                     $("#vehicle_attachment_upload").click();
                 }
             });
-            $('#W9_attachment_1').change(function() {
+            $('#W9_attachment_1').change(function () {
                 if ($.trim($('#W9_attachment_1').val()) != '') {
                     $("#W9_attachment_upload").click();
                 }
             });
-            $('#brilliant_attachment_1').change(function() {
+            $('#brilliant_attachment_1').change(function () {
                 if ($.trim($('#brilliant_attachment_1').val()) != '') {
                     $("#brilliant_attachment_upload").click();
                 }
             });
             /* Start Insurance Attachment Upload */
-            $('#insurance_attachment_upload').click(function() {
+            $('#insurance_attachment_upload').click(function () {
                 $("#insurance_attachment_upload").hide();
                 $("#insurance_attachment_progressbar").show();
                 var file_data = $('#insurance_attachment_1').prop('files')[0];
@@ -326,7 +354,7 @@
                     contentType: false,
                     processData: false,
                     data: form_data,
-                    type: 'post', success: function(r) {
+                    type: 'post', success: function (r) {
                         $("#insurance_attachment_progressbar").hide();
                         var attachment_res = r.split("****");
                         if (attachment_res[0] == 'success') {
@@ -361,7 +389,7 @@
             /* End Insurance Attachment Upload */
 
             /* Start Vehicle Attachment Upload */
-            $('#vehicle_attachment_upload').click(function() {
+            $('#vehicle_attachment_upload').click(function () {
 
                 $("#select_vehicle_photos_area").hide();
                 $("#vehicle_attachment_progressbar").show();
@@ -376,7 +404,7 @@
                     contentType: false,
                     processData: false,
                     data: form_data,
-                    type: 'post', success: function(r) {
+                    type: 'post', success: function (r) {
 
                         $("#select_vehicle_photos_area").show();
                         $("#vehicle_attachment_progressbar").hide();
@@ -417,7 +445,7 @@
             });
             /* End Vehicle Attachment Upload */
             /* Start Other Attachment Upload */
-            $('#other_attachment_upload').click(function() {
+            $('#other_attachment_upload').click(function () {
 
                 $("#select_other_document_area").hide();
                 $("#other_attachment_progressbar").show();
@@ -430,7 +458,7 @@
                     contentType: false,
                     processData: false,
                     data: form_data,
-                    type: 'post', success: function(r) {
+                    type: 'post', success: function (r) {
 
                         $("#select_other_document_area").show();
                         $("#other_attachment_progressbar").hide();
@@ -470,7 +498,7 @@
                 });
             });
             /* End Other Attachment Upload */
-            $('#W9_attachment_upload').click(function() {
+            $('#W9_attachment_upload').click(function () {
                 $("#select_W9_photos_area").hide();
                 $("#W9_attachment_progressbar").show();
                 var file_data = $('#W9_attachment_1').prop('files')[0];
@@ -482,7 +510,7 @@
                     contentType: false,
                     processData: false,
                     data: form_data,
-                    type: 'post', success: function(r) {
+                    type: 'post', success: function (r) {
                         $("#select_W9_photos_area").show();
                         $("#W9_attachment_progressbar").hide();
                         var attachment_res = r.split("****");
@@ -520,7 +548,7 @@
             });
             /* End W - 9 Form Attachment Upload*/
 
-            $('#brilliant_attachment_upload').click(function() {
+            $('#brilliant_attachment_upload').click(function () {
                 $("#select_brilliant_photos_area").hide();
                 $("#brilliant_attachment_progressbar").show();
                 var file_data = $('#brilliant_attachment_1').prop('files')[0];
@@ -532,7 +560,7 @@
                     contentType: false,
                     processData: false,
                     data: form_data,
-                    type: 'post', success: function(r) {
+                    type: 'post', success: function (r) {
                         $("#select_brilliant_photos_area").show();
                         $("#brilliant_attachment_progressbar").hide();
                         var attachment_res = r.split("****");

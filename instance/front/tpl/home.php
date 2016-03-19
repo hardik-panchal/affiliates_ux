@@ -5,13 +5,13 @@
                class="form-control ui-autocomplete-input "  onkeyup="search()" placeholder="Search" autocomplete="off">
     </div>
     <div style="margin-top: 20px;" class="col-lg-12">
-        
-            <span class="btn btn-success font-weight-bold col-lg-2 col-lg-offset-5" onclick="search()">
-                <i class="fa fa-search"></i>
-                Search
-            </span>
-            <!--<a href="<?php print _U ?>home" class=" btn btn-warning btn-sm">Reset</a>-->
-        
+
+        <span class="btn btn-success font-weight-bold col-lg-2 col-lg-offset-5" onclick="search()">
+            <i class="fa fa-search"></i>
+            Search
+        </span>
+        <!--<a href="<?php print _U ?>home" class=" btn btn-warning btn-sm">Reset</a>-->
+
     </div>
     <div style="clear: both;"></div>
 </div>
@@ -27,7 +27,7 @@
 
     <div class="modal-dialog" style="width:800px;">
         <div class="modal-content" >
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #EAEAEA;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Add City</h4>
             </div>
@@ -41,23 +41,19 @@
                                    data-toggle="popover" data-placement="bottom" data-content="Plz fill up the field" />
                         </div>
                     </div>
-                    <div class="form-group ">
-                        <label  class="col-lg-3 col-md-2 control-label"></label>
-                        &nbsp;&nbsp;  
-                        <button type="button" onclick="addCity();"  class="btn btn-success ">Save</button>
-                    </div>
-
                 </form>
             </div>
 
-            <div class="modal-footer">
+            <div class="modal-footer" style="background-color: #EAEAEA;">
                 <input type="hidden" name="dot_id" id="dot_id" >
+                <button type="button" onclick="addCity();"  class="btn btn-success ">Add</button>
+
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<div class="modal fade" id="AddAffiliates" >
+<div class="modal fade" id="AddAffiliates"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" id="affiliates_modal_content">
         <?php // include 'affiliate_add.php'; ?>
 
@@ -93,7 +89,7 @@
 $cities = q("select * from affiliates_city");
 foreach ($cities as $each_city):
     ?>
-                                            <option value="<?php print $each_city['id'] ?>" <?php
+                                                    <option value="<?php print $each_city['id'] ?>" <?php
 //                                        if ($cityId == $each_city['id']) {
 //                                            echo "selected";
 //                                        }
@@ -127,7 +123,7 @@ foreach ($cities as $each_city):
             </div>
 
             <div class="modal-footer">
-                <input type="hidden" name="dot_id" id="dot_id">
+                
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div> /.modal-content 
@@ -147,7 +143,7 @@ foreach ($cities as $each_city):
 
     <div class="modal-dialog" style="width:800px;">
         <div class="modal-content" >
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #EAEAEA;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Add Vehicles</h4>
             </div>
@@ -200,17 +196,13 @@ foreach ($cities as $each_city):
                             </select>
                         </div>
                     </div>
-                    <div class="form-group ">
-                        <label  class="col-lg-3 col-md-2 control-label"></label>
-                        &nbsp;&nbsp;  
-                        <button type="button" onclick="addVehicle();"  class="btn btn-success ">Save</button>
-                    </div>
-
                 </form>
             </div>
 
-            <div class="modal-footer">
-                <input type="hidden" name="dot_id" id="dot_id">
+            <div class="modal-footer" style="background-color: #EAEAEA;">
+
+                <button type="button" onclick="addVehicle();"  class="btn btn-success ">Add</button>
+
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div><!-- /.modal-content -->
