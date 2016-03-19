@@ -60,7 +60,16 @@ if ($_REQUEST['addvehicle'] == 1) {
     qi("affiliate_vehicles", $fields);
 }
 
+if ($_REQUEST['editOnMouseHover'] == 1) {
+    $id = $_REQUEST['id'];
+    $field = $_REQUEST['field'];
 
+    $fields[$field] = $_REQUEST['value'];
+    $condition = "id='{$id}'";
+    $edit = qu('affiliate_vehicles', $fields, $condition);
+    print $edit;
+    die;
+}
 _cg("page_title", "Home");
 $jsInclude = "home.js.php";
 

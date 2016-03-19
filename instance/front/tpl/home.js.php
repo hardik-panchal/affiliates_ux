@@ -4,11 +4,29 @@
         $("#search").val();
         search();
     });
+    function search() {
+        $("#waitModal").modal('show');
+        $.ajax({
+            url: _U + 'home',
+            data: {getfilter: 1, search: $("#search").val()},
+            success: function (r) {
+                setTimeout(function () {
+                    $("#waitModal").modal('hide');
+                }, 1000);
+                $("#searchList").html(r);
 
-    function editOnMouseHover(id, field)
-    {
+                $(".hours").click(function () {
+                    $(".hours").hide();
+                    $(this).parent().css({"border": "2px solid #dadada", "background-color": "white"}).attr("contenteditable", "true");
+                });
+
+            }
+        });
+    }
+    function editOnMouseHover(id, field) {
+        console.log(field);
         var value;
-        if (field = 'vehicle')
+        if (field == 'vehicle')
         {
             value = $.trim($("#vehicle" + id).html());
 
@@ -28,18 +46,6 @@
                     _success("Affiliates Has Been Updated Successfully..");
                 }
                 search();
-            }
-        });
-    }
-    function search() {
-//        showWait();
-        $.ajax({
-            url: _U + 'home',
-            data: {getfilter: 1, search: $("#search").val()},
-            success: function (r) {
-//                hideWait();
-//                alert(r);
-                $("#searchList").html(r);
             }
         });
     }
@@ -127,7 +133,7 @@
     }
     function AddAffiliates(edit_id) {
 
-        var city = $("#cityAffiliates option:selected").val();
+
         //Service Area
         var chkServiceArea = [];
         $('#chk_service_area:checked').each(function (i, e) {
@@ -171,7 +177,6 @@
                     farmout_name: $("#farmout").val(),
                     service_area: chkServiceArea,
                     address: $("#address").val(),
-                    cityName: city,
                     contact_name: $("#contact_name").val(),
                     contact_number: $("#contact_number").val(),
                     contact_email: $("#contact_email").val(),
@@ -597,6 +602,7 @@
             });
         });
     }
+
 </script>
 
 
