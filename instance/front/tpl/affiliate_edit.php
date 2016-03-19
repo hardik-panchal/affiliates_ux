@@ -15,21 +15,15 @@ if (isset($_REQUEST['delete_attachment_file']) && $_REQUEST['delete_attachment_f
     die;
 }
 
- 
+
 
 if ($_REQUEST['AddNewaffiliates'] == 1) {
 
     $set_date = explode("/", $_REQUEST['date']);
     $date = date("Y-m-d", strtotime($set_date[2] . "-" . $set_date[0] . "-" . $set_date[1]));
-   $exp_date = date('Y-m-d', strtotime(trim($_REQUEST['expiration_date'])));
-   if ($_REQUEST['city'] == '') {
-        $first = array_slice($_REQUEST['service_area'], 0, 1);
-       
-        $city_id = qs("select * from affiliates_city where city = '{$first[0]}'");
-        $city = $city_id['id'];
-    } else {
-        $city = $_REQUEST['city'];
-    }
+    $exp_date = date('Y-m-d', strtotime(trim($_REQUEST['expiration_date'])));
+    $city = $_REQUEST['cityName'];
+    
     $input_data_array = array(
         'farmout_name' => _escape($_REQUEST['farmout_name']),
         'city' => _escape($city),
@@ -48,7 +42,7 @@ if ($_REQUEST['AddNewaffiliates'] == 1) {
         $update_aff = qu('affiliates', $input_data_array, " id = '" . trim($_REQUEST['edit_id']) . "'");
         $affiliates_insert_id = trim($_REQUEST['edit_id']);
     } else {
-         $affiliates_insert_id = qi('affiliates', $input_data_array, 'REPLACE');
+        $affiliates_insert_id = qi('affiliates', $input_data_array, 'REPLACE');
     }
 
 
@@ -71,8 +65,6 @@ if ($_REQUEST['AddNewaffiliates'] == 1) {
 //    } else {
 //        qu("affiliates_attachment", array('expiration_date' => '0000-00-00'), "affiliates_id='{$affiliates_insert_id}' and file_type='insurance' ");
 //    }
-
-
     // For Service Area
     $resetarea = q("delete from affiliates_service_type where affiliates_id = '{$affiliates_insert_id}' AND type = 'ServiceArea'");
     $getAServicearea = $_REQUEST['service_area'];

@@ -18,10 +18,11 @@ foreach ($affiliates as $each_data) {
     foreach ($vehicle as $vehicleData) {
         $search = $search . '_' . $vehicleData['vehicle'];
     }
-    
-//    d($search);
 
-    $fields['search'] = str_replace("'", "", $search);
+// d($search);
+
+    $search = str_replace("'", "", $search);
+    $fields['search'] = strtolower($search);
     qu("affiliates", $fields, "id= '{$each_data['id']}'");
     $search = '';
 }

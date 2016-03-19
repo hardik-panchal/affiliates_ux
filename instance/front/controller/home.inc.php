@@ -3,7 +3,22 @@
 $urlArgs = _cg("url_vars");
 //d($urlArgs);
 
+
+
 include _PATH . "instance/front/tpl/affiliate_edit.php";
+
+
+
+if ($_REQUEST['editOnMouseHover'] == 1) {
+    $id = $_REQUEST['id'];
+    $field=$_REQUEST['field'];
+
+    $fields[$field] = $_REQUEST['value'];
+    $condition = "id='{$id}'";
+   $edit= qu('affiliate_vehicles', $fields, $condition);
+   print $edit;
+   die;
+}
 if ($_REQUEST['getfilter'] == 1) {
     $search = $_REQUEST['search'];
 

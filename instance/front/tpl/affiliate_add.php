@@ -71,12 +71,12 @@ if (isset($affiliates_edit) && !empty($affiliates_edit)) {
                                     </div>
                                 </div>
 
-                                <div class="form-group col-lg-12" style="display:none;">
+<!--                                <div class="form-group col-lg-12" style="display:none;">
                                     <label for="inputoptions" style="text-align: left;margin-top: -6px;" class="col-lg-12 col-md-12 control-label">City</label>
                                     <div class="col-lg-12 col-md-12">
                                         <input type="text" class="form-control " name="fields[city]" id="city" value="<?php print $city_id; ?>" placeholder="Add your City">
                                     </div>
-                                </div>
+                                </div>-->
 
                                 <div class="form-group col-lg-12">
                                     <label for="inputoptions" style="text-align: left;margin-top: -6px;" class="col-lg-12 col-md-12 control-label">Contact Name</label>
@@ -97,6 +97,24 @@ if (isset($affiliates_edit) && !empty($affiliates_edit)) {
                                     <div class="col-lg-12 col-md-12">
                                         <input type="text" class="form-control reset" name="fields[contact_email]" id="contact_email" value="<?php print $contact_email; ?>" placeholder="Add Contact Email">
                                         <span style="color:grey;font-size: 10px;float:right;">Input Contact Email Here </span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label for="inputPassword1" class="col-lg-3 col-md-2 control-label">City</label>
+                                    <div class="col-lg-12 col-md-12">
+                                        <select class="form-control" name="fields[cityAffiliates]" id="cityAffiliates" required>
+                                            <option value="">Select</option>
+                                            <?php
+                                            $cities = q("select * from affiliates_city");
+                                            foreach ($cities as $each_city):
+                                                ?>
+                                                <option value="<?php print $each_city['id'] ?>" <?php
+//                                        if ($cityId == $each_city['id']) {
+//                                            echo "selected";
+//                                        }
+                                                ?>><?php print $each_city['city']; ?></option>
+                                                    <?php endforeach; ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-12">
@@ -220,265 +238,265 @@ if (isset($affiliates_edit) && !empty($affiliates_edit)) {
                         <?php endforeach; ?>
                     </div>
 
-<!--                    <h3>Documents Info</h3>
-                    <div>
-                        <div class="col-lg-6">
-                            <form id="insurance_attachment" method="post" action="<?php print _U ?>affiliates_attachment_upload">
-                                <div class="form-group col-lg-6 col-md-12" style="padding: 0px;">
-                                    <label for="inputoptions" class="col-lg-12 col-md-12 control-label" style="text-align:left;">Insurance Copy</label>
-                                    <div class="col-lg-12 col-md-12">
+                    <!--                    <h3>Documents Info</h3>
                                         <div>
-                                            <?php
-                                            if (!empty($insurance_files)) {
-                                                $select_insurance_css = 'display:none;';
-                                                $uploaded_insurance_copy_file_css = 'display:block;';
-                                            } else {
-                                                $select_insurance_css = 'display:block;';
-                                                $uploaded_insurance_copy_file_css = 'display:none;';
-                                            }
-                                            ?>
-                                            <div id="select_insurance_copy_area" style="<?php print $select_insurance_css; ?>">
-                                                <div style="float:left;padding: 4px 8px;" class="fileUpload btn btn-success">
-                                                    <span>Select Copy &nbsp;&nbsp;<i class="glyphicon glyphicon-upload" title="Upload"></i></span>
-                                                    <input  type="file" class="upload" name="insurance_attachment_1" id="insurance_attachment_1"/>
-                                                </div>
-                                                <input style="float:left;margin-left:0px;display:none;" class="btn btn-success" type="button" value="Upload" nmae="insurance_attachment_upload" id="insurance_attachment_upload"/>     
-                                            </div>
-
-                                            <div style="clear:both;"></div>
-
-                                            <div id="insurance_attachment_progressbar"  class="please_wait_progress_bar" style="width: 70%;margin-left:15%;margin-top:10px;padding:5px;display:none;">Please Wait....</div>
-                                            <div id="uploaded_insurance_copy_file" style="display:none;<?php print $uploaded_insurance_copy_file_css; ?>">
-                                                <?php
-                                                if (!empty($insurance_files)):
-                                                    $insurance_files_nm_arr = explode("___", $insurance_files['file_name']);
-                                                    $getextention = explode('.', $insurance_files['file_name']);
-                                                    ?>
-
-                                                    <table class="table" id="" style="width:140px;">
-                                                        <tr id="attachment_file_<?php print $insurance_files['id'] ?>">
-                                                            <td style="width:100%;border:none;">
-                                                                <div style="float:left;">
-                                                                    <span style="color:grey;"> <?php
-                                                                        $displayname = wordwrap($insurance_files['file_name'], 30, '<br />', true);
-                                                                        print $displayname;
-                                                                        ?></span>
+                                            <div class="col-lg-6">
+                                                <form id="insurance_attachment" method="post" action="<?php print _U ?>affiliates_attachment_upload">
+                                                    <div class="form-group col-lg-6 col-md-12" style="padding: 0px;">
+                                                        <label for="inputoptions" class="col-lg-12 col-md-12 control-label" style="text-align:left;">Insurance Copy</label>
+                                                        <div class="col-lg-12 col-md-12">
+                                                            <div>
+                    <?php
+                    if (!empty($insurance_files)) {
+                        $select_insurance_css = 'display:none;';
+                        $uploaded_insurance_copy_file_css = 'display:block;';
+                    } else {
+                        $select_insurance_css = 'display:block;';
+                        $uploaded_insurance_copy_file_css = 'display:none;';
+                    }
+                    ?>
+                                                                <div id="select_insurance_copy_area" style="<?php print $select_insurance_css; ?>">
+                                                                    <div style="float:left;padding: 4px 8px;" class="fileUpload btn btn-success">
+                                                                        <span>Select Copy &nbsp;&nbsp;<i class="glyphicon glyphicon-upload" title="Upload"></i></span>
+                                                                        <input  type="file" class="upload" name="insurance_attachment_1" id="insurance_attachment_1"/>
+                                                                    </div>
+                                                                    <input style="float:left;margin-left:0px;display:none;" class="btn btn-success" type="button" value="Upload" nmae="insurance_attachment_upload" id="insurance_attachment_upload"/>     
                                                                 </div>
-                                                            </td>
-                                                            <td style="width:100%;border:none;">
-                                                                <div style="float:right;cursor:pointer;" onclick="DeleteAttachment('<?php print $insurance_files['id']; ?>', '<?php print $insurance_files['file_name']; ?>', 'insurance')"><i class="glyphicon glyphicon-trash" title="Delete"></i></div><div style="clear:both;"></div>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-
-
-                            <div style="clear:both;"></div>
-                            <form id="W9_attachment_upload" method="post" action="<?php print _U ?>affiliates_attachment_upload">
-                                <div class="form-group col-lg-6 col-md-12" style="padding: 0px;">
-                                    <label for="inputoptions" class="col-lg-12 col-md-12 control-label" style="text-align:left;">W-9 Form</label>
-
-                                    <div class="col-lg-12 col-md-12" style="padding: 0px;">
-                                        <div id="select_vehicle_photos_area" class="col-lg-6 col-md-6">
-                                            <div style="float:left;" class="fileUpload btn btn-success">
-                                                <span>W-9 Form &nbsp;&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-upload" title="Upload"></i></span>
-                                                <input type="file" class="upload" name="W9_attachment_1" id="W9_attachment_1"/>
-                                            </div>
-                                            <input style="float:left;margin-left:0px;display:none;" class="btn btn-success" type="button" value="Upload" nmae="W9_attachment_upload" id="W9_attachment_upload"/>     
-                                        </div>
-
-                                        <div style="clear:both;"></div>
-
-                                        <div id="W9_attachment_progressbar"  class="please_wait_progress_bar" style="width: 70%;margin-left:15%;margin-top:10px;padding:5px;display:none;">Please Wait....</div>
-                                        <div id="uploaded_W9_photo_file" class="col-lg-6 col-md-6" style="display:none;"></div>
-
-                                        <?php
-                                        $display_W9_list = 'display:none;';
-                                        if (!empty($vehicle_photos_files)) {
-                                            $display_vehicle_list = 'display:block;border:none;';
-                                        }
-                                        ?>
-                                        <div class="col-lg-12">
-                                            <table class="table" id="uploaded_W9_attachment_table" style="width:140px;margin-top: 10px;<?php print $display_vehicle_list; ?>">
-
-                                                <?php if (!empty($W9_photos_files)) { ?>
-                                                    <?php
-                                                    foreach ($W9_photos_files as $each_W9_photo):
-                                                        $W9s_files_nm_arr = '';
-                                                        $W9s_files_nm_arr = explode("___", $each_W9_photo['file_name']);
-                                                        ?>
-                                                        <tr style="width:100%;" class="W9_photos_nm" id="attachment_file_<?php print $each_W9_photo['id']; ?>">
-                                                            <td style="width:100%;border:none;">
-                                                                <div style="float:left;"><center><span style="color:grey;"> 
-                                                                            <?php
-                                                                            $displayw9name = wordwrap($each_W9_photo['file_name'], 30, '<br />', true);
-                                                                            print $displayw9name;
-                                                                            ?>
-                                                                        </span></center></div>
-                                                            </td><td style="width:100%;border:none;">
-                                                                <div style="float:right;cursor:pointer;margin-left:10px;" onclick="DeleteAttachment('<?php print $each_W9_photo['id']; ?>', '<?php print $each_W9_photo['file_name']; ?>', 'W9')"><i class="glyphicon glyphicon-trash" title="Delete"></i></div>
+                    
                                                                 <div style="clear:both;"></div>
-                                                            </td>
-                                                        </tr>
-                                                        <?php
-                                                    endforeach;
-                                                }
-                                                ?>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </form>
-                            <div style="clear:both;height:1px">&nbsp;</div>
-                            <form id="brilliant_photos_attachment" method="post" action="<?php print _U ?>affiliates_attachment_upload">
-                                <div class="form-group col-lg-6 col-md-12" style="padding: 0px;">
-                                    <label for="inputoptions" class="col-lg-12 col-md-12 control-label" style="text-align:left;">Brilliant Packages</label>
-
-                                    <div class="col-lg-12 col-md-12" style="padding: 0px;">
-                                        <div id="select_brilliant_photos_area" class="col-lg-6 col-md-6">
-                                            <div style="float:left;" class="fileUpload btn btn-success">
-                                                <span>Select Package &nbsp;&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-upload" title="Upload"></i></span>
-                                                <input  type="file" class="upload" name="brilliant_attachment_1" id="brilliant_attachment_1"/>
-                                            </div>
-                                            <input style="float:left;margin-left:0px;display:none;" class="btn btn-success" type="button" value="Upload" name="brilliant_attachment_upload" id="brilliant_attachment_upload"/>     
-                                        </div>
-
-                                        <div style="clear:both;"></div>
-
-                                        <div id="brilliant_attachment_progressbar"  class="please_wait_progress_bar" style="width: 70%;margin-left:15%;margin-top:10px;padding:5px;display:none;">Please Wait....</div>
-                                        <div id="uploaded_brilliant_photo_file" class="col-lg-6 col-md-6" style="display:none;"></div>
-
-                                        <?php
-                                        $display_brilliant_list = 'display:none;';
-                                        if (!empty($brilliant_photos_files)) {
-                                            $display_brilliant_list = 'display:block;border:none;';
-                                        }
-                                        ?>
-                                        <div class="col-lg-12">
-
-                                            <table class="table" id="uploaded_brilliant_attachment_table" style="width:140px;margin-top: 10px;<?php print $display_brilliant_list; ?>">
-
-                                                <?php
-                                                if (!empty($brilliant_photos_files)) {
-                                                    foreach ($brilliant_photos_files as $each_brilliant_photo):
-                                                        $brilliants_files_nm_arr = '';
-                                                        $brilliants_files_nm_arr = explode("___", $each_brilliant_photo['file_name']);
-                                                        ?>
-                                                        <tr style="width:100%;" class="brilliant_photos_nm" id="attachment_file_<?php print $each_brilliant_photo['id']; ?>">
-                                                            <td style="width:100%;border:none;">
-                                                                <div style="float:left;"><center><span style="color:grey;">
-                                                                            <?php
-                                                                            $displaybrilliantname = wordwrap($each_brilliant_photo['file_name'], 30, '<br />', true);
-                                                                            print $displaybrilliantname;
-                                                                            ?>
-                                                                        </span></center></div>
-                                                            </td><td style="width:100%;border:none;">
-                                                                <div style="float:right;cursor:pointer;margin-left:10px;" onclick="DeleteAttachment('<?php print $each_brilliant_photo['id']; ?>', '<?php print $each_brilliant_photo['file_name']; ?>', 'brilliant')"><i class="glyphicon glyphicon-trash" title="Delete"></i></div>
-                                                                <div style="clear:both;"></div>
-                                                            </td>
-                                                        </tr>
-                                                        <?php
-                                                    endforeach;
-                                                }
-                                                ?>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            <div style="clear:both;"></div>					
-
-                            <form id="other_attachment_upload" method="post" action="<?php print _U ?>affiliates_attachment_upload">
-                                <div class="form-group col-lg-6 col-md-12" style="padding: 0px;">
-                                    <label for="inputoptions" class="col-lg-12 col-md-12 control-label" style="text-align:left;">Other Document</label>
-                                    <div class="col-lg-12 col-md-12" style="padding: 0px;">
-                                        <div id="select_other_document_area" class="col-lg-6 col-md-6">
-                                            <div style="float:left;" class="fileUpload btn btn-success">
-                                                <span>Select Document &nbsp;&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-upload" title="Upload"></i></span>
-                                                <input  type="file" class="upload" name="other_attachment_1" id="other_attachment_1"/>
-                                            </div>
-                                            <input style="float:left;margin-left:0px;display:none;" class="btn btn-success" type="button" value="Upload" name="other_attachment_upload" id="other_attachment_upload"/>     
-                                            <input type="hidden" id="affiliates_id" value="" name="affiliates_id">
-                                            <input type="hidden" id="city_id" value="" name="city_id">
-                                        </div>
-                                        <div style="clear:both;"></div>
-                                        <div id="other_attachment_progressbar"  class="please_wait_progress_bar" style="width: 70%;margin-left:15%;margin-top:10px;padding:5px;display:none;color: white;">Please Wait....</div>
-                                        <div id="uploaded_other_file" class="col-lg-6 col-md-6" style="display:none;"></div>
-                                        <?php
-                                        $display_other_list = 'display:none;';
-                                        if (!empty($other_files)) {
-                                            $display_other_list = 'display:block;border:none;';
-                                        }
-                                        ?>
-                                        <table  id="uploaded_attachment_table" style="width:140px;margin-top: 10px;">
-                                            <?php
-                                            if (!empty($other_files)) {
-                                                $count = 1;
-                                                foreach ($other_files as $each_other_file):
-                                                    $other_files_nm_arr = '';
-                                                    $other_files_nm_arr = explode("___", $each_other_file['file_name']);
-                                                    ?>
-                                                    <tr style="width:100%;" class="W9_photos_nm" id="attachment_file_<?php print $each_other_file['id']; ?>">
-                                                        <td style="width:100%;border:none;">
-                                                            <div style="float:left;"><center><span style="color:grey;"> <?php print $each_other_file['file_name']; ?></span></center></div>
-                                                        </td><td style="width:100%;border:none;">
-                                                            <div style="float:right;cursor:pointer;margin-left:10px;" onclick="DeleteAttachment('<?php print $each_other_file['id']; ?>', '<?php print $each_other_file['file_name']; ?>', 'Other')"><i class="glyphicon glyphicon-trash" title="Delete"></i></div>
-                                                            <div style="clear:both;"></div>
-                                                        </td>
-                                                    </tr>
-                                                                <div class="other_file_nm " style="float: left;margin: 5px;border: 1px dotted #DADADA;padding: 5px;"  id="attachment_file_<?php print $each_other_file['id']; ?>">
-                                                        <a style="float: left;" href="<?php print _U . "affiliates_attachment/" . $each_other_file['file_name']; ?>" target="_blank">
-                                                            <div >
-                                                                <label class="label label-success">Open Image</label>
-                                                                <br>
-                                                                <img src='<?php print _U . "affiliates_attachment/" . $each_other_file['file_name'] ?>' style="width:180px;height:130px;padding-top: 20px;"/>
-                                                            </div> 
-                                                        </a>
-                                                        <div style="float:left;cursor:pointer;margin-left:10px;" onclick="DeleteAttachment('<?php print $each_other_file['id']; ?>', '<?php print $each_other_file['file_name']; ?>', 'Other')">
-                                                            <i class="glyphicon glyphicon-trash" title="Delete"></i>
+                    
+                                                                <div id="insurance_attachment_progressbar"  class="please_wait_progress_bar" style="width: 70%;margin-left:15%;margin-top:10px;padding:5px;display:none;">Please Wait....</div>
+                                                                <div id="uploaded_insurance_copy_file" style="display:none;<?php print $uploaded_insurance_copy_file_css; ?>">
+                    <?php
+                    if (!empty($insurance_files)):
+                        $insurance_files_nm_arr = explode("___", $insurance_files['file_name']);
+                        $getextention = explode('.', $insurance_files['file_name']);
+                        ?>
+                        
+                                                                            <table class="table" id="" style="width:140px;">
+                                                                                <tr id="attachment_file_<?php print $insurance_files['id'] ?>">
+                                                                                    <td style="width:100%;border:none;">
+                                                                                        <div style="float:left;">
+                                                                                            <span style="color:grey;"> <?php
+                        $displayname = wordwrap($insurance_files['file_name'], 30, '<br />', true);
+                        print $displayname;
+                        ?></span>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td style="width:100%;border:none;">
+                                                                                        <div style="float:right;cursor:pointer;" onclick="DeleteAttachment('<?php print $insurance_files['id']; ?>', '<?php print $insurance_files['file_name']; ?>', 'insurance')"><i class="glyphicon glyphicon-trash" title="Delete"></i></div><div style="clear:both;"></div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                        
+                    <?php endif; ?>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div style="clear: both;"></div>
                                                     </div>
-
-                                                    <?php
-                                                    $count++;
-                                                endforeach;
-                                            }
-                                            ?>
-
-                                        </table>
-                                    </div>
-                                </div>
-                            </form>					
-
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="col-lg-2">&nbsp;</div>
-                            <div class="form-group col-lg-10 col-md-10" style="padding: 0px;text-align:right;">
-                                <div id="div_insurance_expiration_date" style="">
-                                    <label for="expiration_date" class="col-lg-12 col-md-12 control-label" style="text-align:left;">Insurance Expiration Date</label>
-                                    <?php
-                                    $expiration_date;
-                                    $exp_date = date('m/d/Y', strtotime(trim($expiration_date))) == '12/31/1969' ? '' : date('m/d/Y', strtotime(trim($expiration_date)));
-                                    ?>
-                                    <input type="text" class="form-control input-sm" id="txt_expiration_date" name="txt_expiration_date" style="margin-left: 15px;width:80%;" value="<?php echo $exp_date; ?>"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="clear: both;">
-                            <div id="uploaded_attachment_list" style="display:none;"><?php print $file_comma_list; ?></div>
-                            <div style="margin-bottom:20px;"></div>
-                        </div>
-                        <div style="clear:both;"></div>
-                    </div>-->
+                                                </form>
+                    
+                    
+                                                <div style="clear:both;"></div>
+                                                <form id="W9_attachment_upload" method="post" action="<?php print _U ?>affiliates_attachment_upload">
+                                                    <div class="form-group col-lg-6 col-md-12" style="padding: 0px;">
+                                                        <label for="inputoptions" class="col-lg-12 col-md-12 control-label" style="text-align:left;">W-9 Form</label>
+                    
+                                                        <div class="col-lg-12 col-md-12" style="padding: 0px;">
+                                                            <div id="select_vehicle_photos_area" class="col-lg-6 col-md-6">
+                                                                <div style="float:left;" class="fileUpload btn btn-success">
+                                                                    <span>W-9 Form &nbsp;&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-upload" title="Upload"></i></span>
+                                                                    <input type="file" class="upload" name="W9_attachment_1" id="W9_attachment_1"/>
+                                                                </div>
+                                                                <input style="float:left;margin-left:0px;display:none;" class="btn btn-success" type="button" value="Upload" nmae="W9_attachment_upload" id="W9_attachment_upload"/>     
+                                                            </div>
+                    
+                                                            <div style="clear:both;"></div>
+                    
+                                                            <div id="W9_attachment_progressbar"  class="please_wait_progress_bar" style="width: 70%;margin-left:15%;margin-top:10px;padding:5px;display:none;">Please Wait....</div>
+                                                            <div id="uploaded_W9_photo_file" class="col-lg-6 col-md-6" style="display:none;"></div>
+                    
+                    <?php
+                    $display_W9_list = 'display:none;';
+                    if (!empty($vehicle_photos_files)) {
+                        $display_vehicle_list = 'display:block;border:none;';
+                    }
+                    ?>
+                                                            <div class="col-lg-12">
+                                                                <table class="table" id="uploaded_W9_attachment_table" style="width:140px;margin-top: 10px;<?php print $display_vehicle_list; ?>">
+                    
+                    <?php if (!empty($W9_photos_files)) { ?>
+                        <?php
+                        foreach ($W9_photos_files as $each_W9_photo):
+                            $W9s_files_nm_arr = '';
+                            $W9s_files_nm_arr = explode("___", $each_W9_photo['file_name']);
+                            ?>
+                                                                                    <tr style="width:100%;" class="W9_photos_nm" id="attachment_file_<?php print $each_W9_photo['id']; ?>">
+                                                                                        <td style="width:100%;border:none;">
+                                                                                            <div style="float:left;"><center><span style="color:grey;"> 
+                            <?php
+                            $displayw9name = wordwrap($each_W9_photo['file_name'], 30, '<br />', true);
+                            print $displayw9name;
+                            ?>
+                                                                                                    </span></center></div>
+                                                                                        </td><td style="width:100%;border:none;">
+                                                                                            <div style="float:right;cursor:pointer;margin-left:10px;" onclick="DeleteAttachment('<?php print $each_W9_photo['id']; ?>', '<?php print $each_W9_photo['file_name']; ?>', 'W9')"><i class="glyphicon glyphicon-trash" title="Delete"></i></div>
+                                                                                            <div style="clear:both;"></div>
+                                                                                        </td>
+                                                                                    </tr>
+                            <?php
+                        endforeach;
+                    }
+                    ?>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                    
+                                                    </div>
+                                                </form>
+                                                <div style="clear:both;height:1px">&nbsp;</div>
+                                                <form id="brilliant_photos_attachment" method="post" action="<?php print _U ?>affiliates_attachment_upload">
+                                                    <div class="form-group col-lg-6 col-md-12" style="padding: 0px;">
+                                                        <label for="inputoptions" class="col-lg-12 col-md-12 control-label" style="text-align:left;">Brilliant Packages</label>
+                    
+                                                        <div class="col-lg-12 col-md-12" style="padding: 0px;">
+                                                            <div id="select_brilliant_photos_area" class="col-lg-6 col-md-6">
+                                                                <div style="float:left;" class="fileUpload btn btn-success">
+                                                                    <span>Select Package &nbsp;&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-upload" title="Upload"></i></span>
+                                                                    <input  type="file" class="upload" name="brilliant_attachment_1" id="brilliant_attachment_1"/>
+                                                                </div>
+                                                                <input style="float:left;margin-left:0px;display:none;" class="btn btn-success" type="button" value="Upload" name="brilliant_attachment_upload" id="brilliant_attachment_upload"/>     
+                                                            </div>
+                    
+                                                            <div style="clear:both;"></div>
+                    
+                                                            <div id="brilliant_attachment_progressbar"  class="please_wait_progress_bar" style="width: 70%;margin-left:15%;margin-top:10px;padding:5px;display:none;">Please Wait....</div>
+                                                            <div id="uploaded_brilliant_photo_file" class="col-lg-6 col-md-6" style="display:none;"></div>
+                    
+                    <?php
+                    $display_brilliant_list = 'display:none;';
+                    if (!empty($brilliant_photos_files)) {
+                        $display_brilliant_list = 'display:block;border:none;';
+                    }
+                    ?>
+                                                            <div class="col-lg-12">
+                    
+                                                                <table class="table" id="uploaded_brilliant_attachment_table" style="width:140px;margin-top: 10px;<?php print $display_brilliant_list; ?>">
+                    
+                    <?php
+                    if (!empty($brilliant_photos_files)) {
+                        foreach ($brilliant_photos_files as $each_brilliant_photo):
+                            $brilliants_files_nm_arr = '';
+                            $brilliants_files_nm_arr = explode("___", $each_brilliant_photo['file_name']);
+                            ?>
+                                                                                    <tr style="width:100%;" class="brilliant_photos_nm" id="attachment_file_<?php print $each_brilliant_photo['id']; ?>">
+                                                                                        <td style="width:100%;border:none;">
+                                                                                            <div style="float:left;"><center><span style="color:grey;">
+                            <?php
+                            $displaybrilliantname = wordwrap($each_brilliant_photo['file_name'], 30, '<br />', true);
+                            print $displaybrilliantname;
+                            ?>
+                                                                                                    </span></center></div>
+                                                                                        </td><td style="width:100%;border:none;">
+                                                                                            <div style="float:right;cursor:pointer;margin-left:10px;" onclick="DeleteAttachment('<?php print $each_brilliant_photo['id']; ?>', '<?php print $each_brilliant_photo['file_name']; ?>', 'brilliant')"><i class="glyphicon glyphicon-trash" title="Delete"></i></div>
+                                                                                            <div style="clear:both;"></div>
+                                                                                        </td>
+                                                                                    </tr>
+                            <?php
+                        endforeach;
+                    }
+                    ?>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <div style="clear:both;"></div>					
+                    
+                                                <form id="other_attachment_upload" method="post" action="<?php print _U ?>affiliates_attachment_upload">
+                                                    <div class="form-group col-lg-6 col-md-12" style="padding: 0px;">
+                                                        <label for="inputoptions" class="col-lg-12 col-md-12 control-label" style="text-align:left;">Other Document</label>
+                                                        <div class="col-lg-12 col-md-12" style="padding: 0px;">
+                                                            <div id="select_other_document_area" class="col-lg-6 col-md-6">
+                                                                <div style="float:left;" class="fileUpload btn btn-success">
+                                                                    <span>Select Document &nbsp;&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-upload" title="Upload"></i></span>
+                                                                    <input  type="file" class="upload" name="other_attachment_1" id="other_attachment_1"/>
+                                                                </div>
+                                                                <input style="float:left;margin-left:0px;display:none;" class="btn btn-success" type="button" value="Upload" name="other_attachment_upload" id="other_attachment_upload"/>     
+                                                                <input type="hidden" id="affiliates_id" value="" name="affiliates_id">
+                                                                <input type="hidden" id="city_id" value="" name="city_id">
+                                                            </div>
+                                                            <div style="clear:both;"></div>
+                                                            <div id="other_attachment_progressbar"  class="please_wait_progress_bar" style="width: 70%;margin-left:15%;margin-top:10px;padding:5px;display:none;color: white;">Please Wait....</div>
+                                                            <div id="uploaded_other_file" class="col-lg-6 col-md-6" style="display:none;"></div>
+                    <?php
+                    $display_other_list = 'display:none;';
+                    if (!empty($other_files)) {
+                        $display_other_list = 'display:block;border:none;';
+                    }
+                    ?>
+                                                            <table  id="uploaded_attachment_table" style="width:140px;margin-top: 10px;">
+                    <?php
+                    if (!empty($other_files)) {
+                        $count = 1;
+                        foreach ($other_files as $each_other_file):
+                            $other_files_nm_arr = '';
+                            $other_files_nm_arr = explode("___", $each_other_file['file_name']);
+                            ?>
+                                                                                <tr style="width:100%;" class="W9_photos_nm" id="attachment_file_<?php print $each_other_file['id']; ?>">
+                                                                                    <td style="width:100%;border:none;">
+                                                                                        <div style="float:left;"><center><span style="color:grey;"> <?php print $each_other_file['file_name']; ?></span></center></div>
+                                                                                    </td><td style="width:100%;border:none;">
+                                                                                        <div style="float:right;cursor:pointer;margin-left:10px;" onclick="DeleteAttachment('<?php print $each_other_file['id']; ?>', '<?php print $each_other_file['file_name']; ?>', 'Other')"><i class="glyphicon glyphicon-trash" title="Delete"></i></div>
+                                                                                        <div style="clear:both;"></div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                            <div class="other_file_nm " style="float: left;margin: 5px;border: 1px dotted #DADADA;padding: 5px;"  id="attachment_file_<?php print $each_other_file['id']; ?>">
+                                                                                    <a style="float: left;" href="<?php print _U . "affiliates_attachment/" . $each_other_file['file_name']; ?>" target="_blank">
+                                                                                        <div >
+                                                                                            <label class="label label-success">Open Image</label>
+                                                                                            <br>
+                                                                                            <img src='<?php print _U . "affiliates_attachment/" . $each_other_file['file_name'] ?>' style="width:180px;height:130px;padding-top: 20px;"/>
+                                                                                        </div> 
+                                                                                    </a>
+                                                                                    <div style="float:left;cursor:pointer;margin-left:10px;" onclick="DeleteAttachment('<?php print $each_other_file['id']; ?>', '<?php print $each_other_file['file_name']; ?>', 'Other')">
+                                                                                        <i class="glyphicon glyphicon-trash" title="Delete"></i>
+                                                                                    </div>
+                                                                                    <div style="clear: both;"></div>
+                                                                                </div>
+                            
+                            <?php
+                            $count++;
+                        endforeach;
+                    }
+                    ?>
+                    
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </form>					
+                    
+                                            </div>
+                    
+                                            <div class="col-lg-6">
+                                                <div class="col-lg-2">&nbsp;</div>
+                                                <div class="form-group col-lg-10 col-md-10" style="padding: 0px;text-align:right;">
+                                                    <div id="div_insurance_expiration_date" style="">
+                                                        <label for="expiration_date" class="col-lg-12 col-md-12 control-label" style="text-align:left;">Insurance Expiration Date</label>
+                    <?php
+                    $expiration_date;
+                    $exp_date = date('m/d/Y', strtotime(trim($expiration_date))) == '12/31/1969' ? '' : date('m/d/Y', strtotime(trim($expiration_date)));
+                    ?>
+                                                        <input type="text" class="form-control input-sm" id="txt_expiration_date" name="txt_expiration_date" style="margin-left: 15px;width:80%;" value="<?php echo $exp_date; ?>"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="clear: both;">
+                                                <div id="uploaded_attachment_list" style="display:none;"><?php print $file_comma_list; ?></div>
+                                                <div style="margin-bottom:20px;"></div>
+                                            </div>
+                                            <div style="clear:both;"></div>
+                                        </div>-->
                     <h3>Service Type</h3>
                     <div>
                         <?php $service = q("select * from affiliates_service_type where affiliates_id = '{$affiliates_id}' AND type = 'Service'"); ?>
@@ -486,114 +504,114 @@ if (isset($affiliates_edit) && !empty($affiliates_edit)) {
                         $optionSelected = array();
                         foreach ($service as $index => $each_service):
                             ?>
-    <?php $optionSelected[] = $each_service['service_type']; ?>
-<?php endforeach; ?>
+                            <?php $optionSelected[] = $each_service['service_type']; ?>
+                        <?php endforeach; ?>
 
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input <?php
-                                    if (in_array("Greeter", $optionSelected)): echo 'checked';
-                                    endif;
-                                    ?> value="Greeter" type="checkbox" id="chk_service_type" name="service[]" /> Greeter
+                                if (in_array("Greeter", $optionSelected)): echo 'checked';
+                                endif;
+                                ?> value="Greeter" type="checkbox" id="chk_service_type" name="service[]" /> Greeter
                             </label>
                         </div>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input <?php
-                                    if (in_array("On-Site Coordinator", $optionSelected)): echo 'checked';
-                                    endif;
-                                    ?> value="On-Site Coordinator" type="checkbox" id="chk_service_type" name="service[]" /> On-Site Coordinator
+                                if (in_array("On-Site Coordinator", $optionSelected)): echo 'checked';
+                                endif;
+                                ?> value="On-Site Coordinator" type="checkbox" id="chk_service_type" name="service[]" /> On-Site Coordinator
                             </label>
                         </div>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input <?php
-                                    if (in_array("Party Bus", $optionSelected)): echo 'checked';
-                                    endif;
-                                    ?> value="Party Bus" type="checkbox" id="chk_service_type" name="service[]" /> Party Bus
+                                if (in_array("Party Bus", $optionSelected)): echo 'checked';
+                                endif;
+                                ?> value="Party Bus" type="checkbox" id="chk_service_type" name="service[]" /> Party Bus
                             </label>
                         </div>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input <?php
-                                    if (in_array("Luxury Sprinter", $optionSelected)): echo 'checked';
-                                    endif;
-                                    ?> value="Luxury Sprinter" type="checkbox" id="chk_service_type" name="service[]" /> Luxury Sprinter
+                                if (in_array("Luxury Sprinter", $optionSelected)): echo 'checked';
+                                endif;
+                                ?> value="Luxury Sprinter" type="checkbox" id="chk_service_type" name="service[]" /> Luxury Sprinter
                             </label>
                         </div>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input <?php
-                                    if (in_array("Sedan", $optionSelected)): echo 'checked';
-                                    endif;
-                                    ?> value="Sedan" type="checkbox" id="chk_service_type" name="service[]" /> Sedan
+                                if (in_array("Sedan", $optionSelected)): echo 'checked';
+                                endif;
+                                ?> value="Sedan" type="checkbox" id="chk_service_type" name="service[]" /> Sedan
                             </label>
                         </div>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input <?php
-                                    if (in_array("Luxury Sedan", $optionSelected)): echo 'checked';
-                                    endif;
-                                    ?> value="Luxury Sedan" type="checkbox" id="chk_service_type" name="service[]" /> Luxury Sedan
+                                if (in_array("Luxury Sedan", $optionSelected)): echo 'checked';
+                                endif;
+                                ?> value="Luxury Sedan" type="checkbox" id="chk_service_type" name="service[]" /> Luxury Sedan
                             </label>
                         </div>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input <?php
-                                    if (in_array("SUV", $optionSelected)): echo 'checked';
-                                    endif;
-                                    ?> value="SUV" type="checkbox" id="chk_service_type" name="service[]" /> SUV
+                                if (in_array("SUV", $optionSelected)): echo 'checked';
+                                endif;
+                                ?> value="SUV" type="checkbox" id="chk_service_type" name="service[]" /> SUV
                             </label>
                         </div>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input <?php
-                                    if (in_array("Sprinter", $optionSelected)): echo 'checked';
-                                    endif;
-                                    ?> value="Sprinter" type="checkbox" id="chk_service_type" name="service[]" /> Sprinter
+                                if (in_array("Sprinter", $optionSelected)): echo 'checked';
+                                endif;
+                                ?> value="Sprinter" type="checkbox" id="chk_service_type" name="service[]" /> Sprinter
                             </label>
                         </div>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input <?php
-                                    if (in_array("MiniBus", $optionSelected)): echo 'checked';
-                                    endif;
-                                    ?> value="MiniBus" type="checkbox" id="chk_service_type" name="service[]" /> MiniBus
+                                if (in_array("MiniBus", $optionSelected)): echo 'checked';
+                                endif;
+                                ?> value="MiniBus" type="checkbox" id="chk_service_type" name="service[]" /> MiniBus
                             </label>
                         </div>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input <?php
-                                    if (in_array("Setra Coach", $optionSelected)): echo 'checked';
-                                    endif;
-                                    ?> value="Setra Coach" type="checkbox" id="chk_service_type" name="service[]" /> Setra Coach
+                                if (in_array("Setra Coach", $optionSelected)): echo 'checked';
+                                endif;
+                                ?> value="Setra Coach" type="checkbox" id="chk_service_type" name="service[]" /> Setra Coach
                             </label>
                         </div>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input <?php
-                                    if (in_array("Coach", $optionSelected)): echo 'checked';
-                                    endif;
-                                    ?> value="Coach" type="checkbox" id="chk_service_type" name="service[]" /> Coach
+                                if (in_array("Coach", $optionSelected)): echo 'checked';
+                                endif;
+                                ?> value="Coach" type="checkbox" id="chk_service_type" name="service[]" /> Coach
                             </label>
                         </div>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input <?php
-                                    if (in_array("Caterer", $optionSelected)): echo 'checked';
-                                    endif;
-                                    ?> value="Caterer" type="checkbox" id="chk_service_type" name="service[]" /> Caterer
+                                if (in_array("Caterer", $optionSelected)): echo 'checked';
+                                endif;
+                                ?> value="Caterer" type="checkbox" id="chk_service_type" name="service[]" /> Caterer
                             </label>
                         </div>                        
                         <?php $getotherservice = q("select * from affiliates_service_type where affiliates_id = '{$affiliates_id}' AND type = 'Service' AND service_type NOT IN ('Setra Coach','MiniBus','Sprinter','SUV','Luxury Sedan','Sedan','Luxury Sprinter','Party Bus','On-Site Coordinator','Greeter','Coach')"); ?>
-<?php foreach ($getotherservice as $index => $each_otherservice): ?>
-    <?php $optionSelected_ = empty($each_otherservice['service_type']) ? '' : 'checked'; ?>
+                        <?php foreach ($getotherservice as $index => $each_otherservice): ?>
+                            <?php $optionSelected_ = empty($each_otherservice['service_type']) ? '' : 'checked'; ?>
                             <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                                 <label>
                                     <input <?php print $optionSelected_ ?> value="<?php print $each_otherservice['service_type']; ?>" type="checkbox" id="chk_service_type" name="service[]" /> <?php print $each_otherservice['service_type']; ?>
                                 </label>
                             </div>
-<?php endforeach; ?>
+                        <?php endforeach; ?>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input value="" class="chk_other_type" onclick="$('#otherservice').toggle();" type="checkbox" id="chk_service_type" name="service[]"/><font style="color:blue;">Other</font>
@@ -609,33 +627,33 @@ if (isset($affiliates_edit) && !empty($affiliates_edit)) {
                         $optionSelectedA = array();
                         foreach ($amenities as $index => $each_amenity):
                             ?>
-    <?php $optionSelectedA[] = $each_amenity['amenity_type']; ?>
-<?php endforeach; ?>
+                            <?php $optionSelectedA[] = $each_amenity['amenity_type']; ?>
+                        <?php endforeach; ?>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input <?php
-                                    if (in_array("Leather Sheets", $optionSelectedA)): echo 'checked';
-                                    endif;
-                                    ?> value="Leather Sheets" type="checkbox" id="chk_amenity_type" name="chk_amenity_type[]" /> Leather Sheets
+                                if (in_array("Leather Sheets", $optionSelectedA)): echo 'checked';
+                                endif;
+                                ?> value="Leather Sheets" type="checkbox" id="chk_amenity_type" name="chk_amenity_type[]" /> Leather Sheets
                             </label>
                         </div>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input <?php
-                                    if (in_array("Wi-fi", $optionSelectedA)): echo 'checked';
-                                    endif;
-                                    ?> value="Wi-fi" type="checkbox" id="chk_amenity_type" name="chk_amenity_type[]" /> Wi-fi
+                                if (in_array("Wi-fi", $optionSelectedA)): echo 'checked';
+                                endif;
+                                ?> value="Wi-fi" type="checkbox" id="chk_amenity_type" name="chk_amenity_type[]" /> Wi-fi
                             </label>
                         </div>
                         <?php $amenitiesother = q("select * from affiliates_service_type where affiliates_id = '{$affiliates_id}' AND type = 'Amenity' AND amenity_type NOT IN ('Leather Sheets','wi-fi')"); ?>
-<?php foreach ($amenitiesother as $index => $each_otheramenity): ?>
-    <?php $optionSelected_ = empty($each_otheramenity['amenity_type']) ? '' : 'checked'; ?>
+                        <?php foreach ($amenitiesother as $index => $each_otheramenity): ?>
+                            <?php $optionSelected_ = empty($each_otheramenity['amenity_type']) ? '' : 'checked'; ?>
                             <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                                 <label>
                                     <input <?php print $optionSelected_ ?> value="<?php print $each_otheramenity['amenity_type']; ?>" type="checkbox" id="chk_amenity_type" name="chk_amenity_type[]" /> <?php print $each_otheramenity['amenity_type']; ?>
                                 </label>
                             </div>
-<?php endforeach; ?>
+                        <?php endforeach; ?>
                         <div class="checkbox col-lg-4" style="margin-top: 0px !important;">
                             <label>
                                 <input value="" class="chk_other_amenity_type" onclick="$('#otheramenityservice').toggle();" type="checkbox" id="chk_amenity_type" name="chk_other_amenity_type[]"/><font style="color:blue;">Other</font>
@@ -648,14 +666,14 @@ if (isset($affiliates_edit) && !empty($affiliates_edit)) {
         </div> 
 
     </div><!-- /.modal-content -->
-    <div class="modal-footer" style="background-color: #EAEAEA;height:48px;">
-        <div style="margin-top:-14px;">
+    <div class="modal-footer" style="background-color: #EAEAEA;height:55px;">
+        <div style="margin-top:-3px;">
             <input type="hidden" name="fields[affiliates_id]" id="affiliates_id" value="<?php print $affiliates_id; ?>">
             <?php if ($affiliates_id > 0) { ?>
-                <button type="button" class="btn btn-primary" onclick="AddAffiliates('<?php print $affiliates_id; ?>');">Update</button>
+                <button type="button" class="btn btn-success" onclick="AddAffiliates('<?php print $affiliates_id; ?>');">Update</button>
             <?php } else { ?>
-                <button type="button" class="btn btn-primary" onclick="AddAffiliates('0');">Add</button>
-<?php } ?>
+                <button type="button" class="btn btn-success" onclick="AddAffiliates('0');">Add</button>
+            <?php } ?>
 
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
