@@ -12,11 +12,12 @@ if (!empty($data)):
 
     <?php foreach ($data as $each_data): ?>
 
-        <div class="panel panel-default" style="padding-top: 10px;margin-top:20px;background-color:white;box-shadow:0 1px 0 rgba(0, 0, 0, 0.4);">
+        <div class="panel panel-default" style="padding-top: 10px;margin-top:20px;background-color:white;box-shadow:0 1px 0 rgba(0, 0, 0, 0.4);padding-bottom: 10px;">
             <div class="col-md-4 col-lg-4" style="padding-left:20px">
-                <div  style="font-size: 17px;color:black;padding-top:1px;">
+                <span  style="font-size: 17px;color:black;padding-top:1px;">
                     <strong> <?php print $each_data['farmout_name']; ?></strong>
-                    <div style="font-family:verdana;color:grey; text-decoration:none;font-size:14px;line-height:18px;">
+                    </br>
+                    <span style="font-family:verdana;color:grey; text-decoration:none;font-size:14px;line-height:18px;">
                         <?php
                         if ($each_data['address']) {
                             print $each_data['address'] . ',';
@@ -27,31 +28,35 @@ if (!empty($data)):
                             print $city['city'];
                         }
                         ?> 
-                    </div>
-                </div>
-                <div  style="font-size: 15px;color:#1294d5;padding-top:20px;height:50px;">
+                    </span>
+                </span>
+                <br/>
+                <br/>
+                <span  style="font-size: 15px;color:#1294d5;padding-top:20px;height:50px;">
                     <strong style="color: grey;font-size: 14px;"> Contact Detail</strong>
-                    <div style="font-family:verdana;color:grey; text-decoration:none;font-size:11px;line-height:18px;">
+                    <br/>
+                    <span style="font-family:verdana;color:grey; text-decoration:none;font-size:11px;line-height:18px;">
                         <?php
                         if ($each_data['contact_number']) {
                             print $each_data['contact_number'];
                         }
-                        ?><br>
+                        ?>
+                        <br/>
                         <?php
                         if ($each_data['contact_email']) {
                             print $each_data['contact_email'];
                         }
                         ?>
-                    </div>
-                </div>
+                    </span>
+                </span>
 
             </div>
             <div class="col-md-8 col-lg-8 table-responsive">
                 <table class="table table-condensed table-hover ">
                     <tr>
-                        <th style="font-size:18px;">Vehicle Name</th>    
-                        <th style="font-size:18px;">$/Hour</th>    
-                        <th style="font-size:18px;">Minimum Hours</th>    
+                        <th style="font-size:18px;border-top: none;border-bottom: 2px solid #ddd;width: 40%;">Vehicle Name</th>    
+                        <th style="font-size:18px;border-top: none;border-bottom: 2px solid #ddd;width: 20%;">$/Hour</th>    
+                        <th style="font-size:18px;border-top: none;border-bottom: 2px solid #ddd;width: 20%;">Minimum Hours</th>    
                     </tr>
 
                     <?php
@@ -69,66 +74,47 @@ if (!empty($data)):
                     foreach ($vehicle as $each_vehicle):
                         ?>
                         <tr>
-                            <td class="text-capitalize text-success font-weight-bold">
-                                <?php print $each_vehicle['vehicle']; ?> 
+                            <td class="text-capitalize text-success font-weight-bold" onblur="editOnMouseHover('<?php print $each_vehicle['id']; ?>', 'vehicle')">
+                                <span class="hours" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>&nbsp;
+                                <span id="vehicle<?php print $each_vehicle['id']; ?>"> 
+                                    <?php print $each_vehicle['vehicle']; ?> 
+                                </span>
                             </td>
-                            <td>
+                            <td onblur="editOnMouseHover('<?php print $each_vehicle['id']; ?>', 'rate_per_hour')">
+                                <span class="hours" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>&nbsp;
+
+                                <?php if ($each_vehicle['rate_per_hour']) { ?>$<?php } ?><span id="rate_per_hour<?php print $each_vehicle['id'];?>">
                                 <?php
                                 if ($each_vehicle['rate_per_hour']) {
-                                    print '$' . $each_vehicle['rate_per_hour'] . ' / Hours';
+                                    print $each_vehicle['rate_per_hour'];
                                 } else {
-                                    print 'N/A / Hours';
+                                    print 'N/A ';
                                 }
                                 ?>
+                                </span>
+                                / Hours
                             </td>
-                            <td>
-                                <?php
-                                if ($each_vehicle['minimum']) {
-                                    print $each_vehicle['minimum'] . ' hours min';
-                                } else {
-                                    print 'N/A  hours min';
-                                }
-                                ?>
+                            <td onblur="editOnMouseHover('<?php print $each_vehicle['id']; ?>', 'minimum')">
+                                <span class="hours" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>&nbsp;
+                                <span  id="minimum<?php print $each_vehicle['id']; ?>">
+                                    <?php
+                                    if ($each_vehicle['minimum']) {
+                                        print $each_vehicle['minimum'];
+                                    } else {
+                                        print 'N/A  ';
+                                    }
+                                    ?>
+                                </span> hours min
                             </td>
                         </tr>
+
+
+
                     <?php endforeach; ?>
                 </table>
-                <?php foreach ($vehicle as $each_vehicle):
-                    ?>
-                    <!--                    <div class="col-md-4 col-lg-4">
-                                            <div class="panel panel-default ">
-                                                <div class="panel-heading " style="padding-left: 20px;font-size: 14px;">
-                                                    <b> <?php print $each_vehicle['vehicle']; ?> </b>
-                                                </div>
-                                                <div id="filterdate" class="panel-body" style="font-size: 12px;color: grey;padding-left: 30px;">
-                                                    <b><?php
-                    if ($each_vehicle['rate_per_hour']) {
-                        //  print '$' . $each_vehicle['rate_per_hour'] . ' / Hours';
-                    } else {
-                        //  print 'N/A / Hours';
-                    }
-                    ?>
-                                                        <br>  
-                    <?php
-                    if ($each_vehicle['minimum']) {
-                        // print $each_vehicle['minimum'] . ' hours min';
-                    } else {
-                        //  print 'N/A  hours min';
-                    }
-                    ?>
-                                                    </b>
-                                                </div>
-                                            </div>
-                                        </div>-->
 
-
-                <?php endforeach; ?>
-                </table>
             </div>
             <div class="clearfix"></div>
-            <div style="font-size: 14px;color: maroon;background-color: #faedba;line-height: 30px;padding-left:20px;margin-top: 50px"><b>Note : Good Drivers | Doble Check Billing </b> </div>
-
-
         </div>
 
     <?php endforeach; ?>
