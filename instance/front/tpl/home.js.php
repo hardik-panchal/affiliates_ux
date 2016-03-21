@@ -1,8 +1,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
         CallAllFunctionAtRefresh();
-        $("#search").val();
-        search();
+       
+       
     });
     function search() {
         $("#waitModal").modal('show');
@@ -17,9 +17,14 @@
 
                 $(".hours").click(function () {
                     $(".hours").hide();
-                    $(this).parent().css({"border": "2px solid #dadada", "background-color": "white"}).attr("contenteditable", "true");
-                });
 
+                    $(this).next().css({"border": "2px solid #dadada", "background-color": "white"}).attr("contenteditable", "true");
+                });
+                $(".hours").parent().blur(function () {
+                    $(".hours").show();
+
+                    $(".editStart").parent().css({"border": "", "background-color": ""}).attr("contenteditable", "false");
+                });
             }
         });
     }
@@ -32,10 +37,14 @@
 
         } else if (field == 'rate_per_hour')
         {
+            console.log($.trim($("#rate_per_hour" + id).html()));
             value = $.trim($("#rate_per_hour" + id).html());
+            console.log(value);
         } else if (field == 'minimum')
         {
+            console.log($.trim($("#minimum" + id).html()));
             value = $.trim($("#minimum" + id).html());
+            console.log(value);
         }
         $.ajax({
             url: _U + 'home',

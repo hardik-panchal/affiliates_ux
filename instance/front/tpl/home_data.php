@@ -80,10 +80,11 @@ if (!empty($data)):
                                     <?php print $each_vehicle['vehicle']; ?> 
                                 </span>
                             </td>
-                            <td onblur="editOnMouseHover('<?php print $each_vehicle['id']; ?>', 'rate_per_hour')">
+                            <td >
                                 <span class="hours" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>&nbsp;
 
-                                <?php if ($each_vehicle['rate_per_hour']) { ?>$<?php } ?><span id="rate_per_hour<?php print $each_vehicle['id'];?>">
+                                <?php if ($each_vehicle['rate_per_hour']) { ?>$<?php } ?>
+                                <span onblur="editOnMouseHover('<?php print $each_vehicle['id']; ?>', 'rate_per_hour')" id="rate_per_hour<?php print $each_vehicle['id'];?>">
                                 <?php
                                 if ($each_vehicle['rate_per_hour']) {
                                     print $each_vehicle['rate_per_hour'];
@@ -94,9 +95,9 @@ if (!empty($data)):
                                 </span>
                                 / Hours
                             </td>
-                            <td onblur="editOnMouseHover('<?php print $each_vehicle['id']; ?>', 'minimum')">
+                            <td >
                                 <span class="hours" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>&nbsp;
-                                <span  id="minimum<?php print $each_vehicle['id']; ?>">
+                                <span onblur="editOnMouseHover('<?php print $each_vehicle['id']; ?>', 'minimum')" id="minimum<?php print $each_vehicle['id']; ?>">
                                     <?php
                                     if ($each_vehicle['minimum']) {
                                         print $each_vehicle['minimum'];

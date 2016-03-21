@@ -2,16 +2,14 @@
 <div  class="col-lg-12 " style="margin-top: 50px;">
     <div class="col-lg-12">
         <input style="box-shadow: 0px 10px 70px #DDD;height:40px" type="text" name="search" id="search"
-               class="form-control ui-autocomplete-input "  onkeyup="search()" placeholder="Search" autocomplete="off">
+               class="form-control ui-autocomplete-input " placeholder="Search" autocomplete="off">
     </div>
     <div style="margin-top: 20px;" class="col-lg-12">
-
         <span class="btn btn-success font-weight-bold col-lg-2 col-lg-offset-5" onclick="search()">
             <i class="fa fa-search"></i>
             Search
         </span>
         <!--<a href="<?php print _U ?>home" class=" btn btn-warning btn-sm">Reset</a>-->
-
     </div>
     <div style="clear: both;"></div>
 </div>

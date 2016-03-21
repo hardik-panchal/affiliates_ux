@@ -11,13 +11,13 @@ include _PATH . "instance/front/tpl/affiliate_edit.php";
 
 if ($_REQUEST['editOnMouseHover'] == 1) {
     $id = $_REQUEST['id'];
-    $field=$_REQUEST['field'];
+    $field = $_REQUEST['field'];
 
     $fields[$field] = $_REQUEST['value'];
     $condition = "id='{$id}'";
-   $edit= qu('affiliate_vehicles', $fields, $condition);
-   print $edit;
-   die;
+    $edit = qu('affiliate_vehicles', $fields, $condition);
+    print $edit;
+    die;
 }
 if ($_REQUEST['getfilter'] == 1) {
     $search = $_REQUEST['search'];
@@ -70,6 +70,8 @@ if ($_REQUEST['editOnMouseHover'] == 1) {
     print $edit;
     die;
 }
+$query = "select * from affiliates";
+$data = q($query);
 _cg("page_title", "Home");
 $jsInclude = "home.js.php";
 
