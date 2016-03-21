@@ -1,8 +1,22 @@
+<?php include "jquery_ui.php"; ?>
+<?php include "message.php" ?>
+
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         CallAllFunctionAtRefresh();
-       
-       
+        editHideShow();
+
+    });
+    
+    $( "#search" ).autocomplete({
+      source:_U + 'home',
+      minLength: 2,
+      select: function( event, ui ) {
+          console.log(ui);
+        
+      }
     });
     function search() {
         $("#waitModal").modal('show');
@@ -14,18 +28,23 @@
                     $("#waitModal").modal('hide');
                 }, 1000);
                 $("#searchList").html(r);
+                editHideShow();
 
-                $(".hours").click(function () {
-                    $(".hours").hide();
-
-                    $(this).next().css({"border": "2px solid #dadada", "background-color": "white"}).attr("contenteditable", "true");
-                });
-                $(".hours").parent().blur(function () {
-                    $(".hours").show();
-
-                    $(".editStart").parent().css({"border": "", "background-color": ""}).attr("contenteditable", "false");
-                });
             }
+        });
+    }
+
+    function editHideShow()
+    {
+        $(".hours").click(function () {
+            $(".hours").hide();
+
+            $(this).next().css({"border": "2px solid #dadada", "background-color": "white"}).attr("contenteditable", "true");
+        });
+        $(".hours").parent().blur(function () {
+            $(".hours").show();
+
+            $(".editStart").parent().css({"border": "", "background-color": ""}).attr("contenteditable", "false");
         });
     }
     function editOnMouseHover(id, field) {
@@ -615,5 +634,3 @@
 </script>
 
 
-<?php include "jquery_ui.php"; ?>
-<?php include "message.php" ?>

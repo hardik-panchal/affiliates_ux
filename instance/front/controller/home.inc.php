@@ -36,6 +36,33 @@ if ($_REQUEST['getfilter'] == 1) {
     include _PATH . "instance/front/tpl/home_data.php";
     die;
 }
+if ($_REQUEST['term']) {
+    $search = $_REQUEST['term'];
+
+    $serch_keyword = explode(" ", $search);
+    $result = array();
+    $where = '';
+    foreach ($serch_keyword as $value) {
+        $where = $where . " search like '%{$value}%' And";
+    }
+    $where = rtrim($where, 'And');
+    $query = "select * from affiliates where {$where}";
+    $data = q($query);
+    foreach ($data as $each_data) {
+        $searchString = explode("_", $each_data['search']);
+
+        $lable = '';
+        foreach ($searchString as $searchValue) {
+            $lable = $lable . $searchValue . ",";
+        }
+        $lable = rtrim($lable, ",");
+
+
+        $return[] = array("id" => $each_data['id'], "value" => $each_data['farmout_name'], "label" => $lable, "data" => $each_data);
+    }
+    print json_encode($return);
+    die;
+}
 if ($_REQUEST['addCity'] == 1) {
     $city = $_REQUEST['city'];
     $fields['city'] = $city;
