@@ -7,22 +7,27 @@
     $(document).ready(function () {
         CallAllFunctionAtRefresh();
         editHideShow();
+        $('#search').keypress(function (e) {
+            if (e.keyCode == 13)
+                search('');
+        });
+    });
 
+    $("#search").autocomplete({
+        source: _U + 'home',
+        minLength: 2,
+        select: function (event, ui) {
+        }
     });
-    
-    $( "#search" ).autocomplete({
-      source:_U + 'home',
-      minLength: 2,
-      select: function( event, ui ) {
-          console.log(ui);
-        
-      }
-    });
-    function search() {
+    function sort(sortBy){
+       search(sortBy);
+    }
+    function 
+    function search(sortOn) {
         $("#waitModal").modal('show');
         $.ajax({
             url: _U + 'home',
-            data: {getfilter: 1, search: $("#search").val()},
+            data: {getfilter: 1, search: $("#search").val(),sortOn:sortOn},
             success: function (r) {
                 setTimeout(function () {
                     $("#waitModal").modal('hide');
@@ -73,7 +78,7 @@
                 {
                     _success("Affiliates Has Been Updated Successfully..");
                 }
-                search();
+                search('');
             }
         });
     }

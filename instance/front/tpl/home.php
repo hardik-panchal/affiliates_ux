@@ -1,11 +1,11 @@
 <!--//search-->
 <div  class="col-lg-12 " style="margin-top: 50px;">
-    <div class="col-lg-12">
+    <div class="col-lg-10">
         <input style="box-shadow: 0px 10px 70px #DDD;height:40px" type="text" name="search" id="search"
                class="form-control ui-autocomplete-input " placeholder="Search" autocomplete="off" >
     </div>
-    <div style="margin-top: 20px;" class="col-lg-12">
-        <span class="btn btn-success font-weight-bold col-lg-2 col-lg-offset-5" onclick="search()">
+    <div style="margin-top: 2px;" class="col-lg-2">
+        <span class="btn btn-success font-weight-bold form-control" onclick="search('')">
             <i class="fa fa-search"></i>
             Search
         </span>
@@ -13,7 +13,14 @@
     </div>
     <div style="clear: both;"></div>
 </div>
-
+<div  class="col-lg-12 " style="margin-top: 20px">
+    <div class="col-lg-10"> 
+        <div class="pull-right " style="font-size: 14px;">
+            <span style="font-weight: bold;font-size: 16px;">Sort By :</span> <span style="color:#1294D5;cursor: pointer;" onclick="sort('affiliates')">Affiliates Name</span> | <span style="color:#1294D5;cursor: pointer;" onclick="sort('ratting')">Affiliates Rating</span> | <span style="color:#1294D5;cursor: pointer;">Price</span>
+        </div> 
+    </div>
+    <div style="clear: both;"></div>
+</div>
 <div id="searchList" class="col-lg-12">
     <?php include 'home_data.php'; ?>
 
@@ -21,10 +28,10 @@
 
 <!--START :WAIT MODAL-->
 <div class="modal fade modal-3d-flip-horizontal modal-sm" id="waitModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:451px;">
+    <div class="modal-dialog" style="width:251px;">
         <div class="modal-content" >
             <div class="modal-body" style="color: #666;">
-                <strong style="text-transform: uppercase;font-size: 20px;">Wait Affiliates are loaded  </strong><i class="fa fa-refresh fa-spin fa-2x"></i> 
+                <strong style="text-transform: uppercase;font-size: 20px;">Please Wait </strong><i class="fa fa-refresh fa-spin fa-2x"></i> 
             </div>
         </div>
     </div>
@@ -62,7 +69,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
- <!--Add vehicles-->
+<!--Add vehicles-->
 <div class="modal fade" id="AddVehicles">
 
     <div class="modal-dialog" style="width:800px;">
@@ -169,7 +176,7 @@
 $cities = q("select * from affiliates_city");
 foreach ($cities as $each_city):
     ?>
-                                                    <option value="<?php print $each_city['id'] ?>" <?php
+                                                            <option value="<?php print $each_city['id'] ?>" <?php
 //                                        if ($cityId == $each_city['id']) {
 //                                            echo "selected";
 //                                        }
