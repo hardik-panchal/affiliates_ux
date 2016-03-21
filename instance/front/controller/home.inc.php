@@ -21,6 +21,30 @@ if ($_REQUEST['editOnMouseHover'] == 1) {
 }
 if ($_REQUEST['getfilter'] == 1) {
     $search = $_REQUEST['search'];
+    $sort = $_REQUEST['sortOn'];
+    $serch_keyword = explode(" ", $search);
+    $result = array();
+    $where = '';
+    foreach ($serch_keyword as $value) {
+        $where = $where . " search like '%{$value}%' And";
+    }
+    $where = rtrim($where, 'And');
+    $groupBy = '';
+    if ($sort == 'affiliates') {
+        $groupBy = 'group by farmout_name';
+    }
+    if ($sort == 'ratting') {
+        $groupBy = 'group by rate';
+    }
+    $query = "select * from affiliates where {$where} {$groupBy}";
+    $data = q($query);
+    // $data=  array_unique($data);
+//d($query);
+    include _PATH . "instance/front/tpl/home_data.php";
+    die;
+}
+if ($_REQUEST['term']) {
+    $search = $_REQUEST['term'];
 
     $serch_keyword = explode(" ", $search);
     $result = array();
@@ -31,9 +55,32 @@ if ($_REQUEST['getfilter'] == 1) {
     $where = rtrim($where, 'And');
     $query = "select * from affiliates where {$where}";
     $data = q($query);
-    // $data=  array_unique($data);
-//d($query);
-    include _PATH . "instance/front/tpl/home_data.php";
+    foreach ($data as $each_data) {
+        $searchString = explode("_", $each_data['search']);
+
+        $lable = '';
+        $searchLable = '';
+        $c = 0;
+        foreach ($searchString as $searchValue) {
+            if ($c == 0 || $c == 1) {
+                $lable = $lable . "<b>" . $searchValue . "</b> , ";
+            } elseif ($c == 2) {
+                $lable = $lable . "( " . $searchValue . " , ";
+            } else {
+                $lable = $lable . $searchValue . " , ";
+            }
+            $c++;
+            $lable = strip_tags($lable);
+            $searchLable = $searchLable . $searchValue . " ";
+        }
+        $lable = rtrim($lable, " , ");
+        $lable = $lable . " )";
+        $searchLable = rtrim($searchLable, " ");
+
+
+        $return[] = array("id" => $each_data['id'], "value" => $searchLable, "label" => $lable, "data" => $each_data);
+    }
+    print json_encode($return);
     die;
 }
 if ($_REQUEST['addCity'] == 1) {

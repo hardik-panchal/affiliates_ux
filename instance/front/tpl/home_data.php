@@ -60,12 +60,12 @@ if (!empty($data)):
                     </tr>
 
                     <?php
-                    $vehicle = q("select * from affiliate_vehicles where aff_id='{$each_data['id']}'");
+                    $vehicle = q("select * from affiliate_vehicles where aff_id='{$each_data['id']}' ORDER BY rate_per_hour asc, minimum asc");
                     $count = count($vehicle);
                     if (!$vehicle) {
                         ?>
                         <tr>
-                            <th colspan="3"><strong> Vehicle not Avilable!</strong></th>
+                            <th colspan="3" style="color:red"><strong> Vehicle not Avilable!</strong></th>
                         </tr>
 
                         <?php
@@ -74,9 +74,9 @@ if (!empty($data)):
                     foreach ($vehicle as $each_vehicle):
                         ?>
                         <tr>
-                            <td class="text-capitalize text-success font-weight-bold" onblur="editOnMouseHover('<?php print $each_vehicle['id']; ?>', 'vehicle')">
+                            <td class="text-capitalize text-success font-weight-bold" >
                                 <span class="hours" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>&nbsp;
-                                <span id="vehicle<?php print $each_vehicle['id']; ?>"> 
+                                <span onblur="editOnMouseHover('<?php print $each_vehicle['id']; ?>', 'vehicle')" id="vehicle<?php print $each_vehicle['id']; ?>"> 
                                     <?php print $each_vehicle['vehicle']; ?> 
                                 </span>
                             </td>
@@ -120,6 +120,6 @@ if (!empty($data)):
 
     <?php endforeach; ?>
 <?php else: ?>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 10px;text-align:center;color:red;font-weight:bold;padding:5px;font-size:13px;">Data Not available</div></td>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color:red;margin-top: 10px;text-align:center;color:red;font-weight:bold;padding:5px;font-size:13px;">Data Not available</div></td>
 <?php endif; ?>
     
