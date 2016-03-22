@@ -19,15 +19,15 @@
         select: function (event, ui) {
         }
     });
-    function sort(sortBy){
-       search(sortBy);
+    function sort(sortBy) {
+        search(sortBy);
     }
-    function 
+
     function search(sortOn) {
         $("#waitModal").modal('show');
         $.ajax({
             url: _U + 'home',
-            data: {getfilter: 1, search: $("#search").val(),sortOn:sortOn},
+            data: {getfilter: 1, search: $("#search").val(), sortOn: sortOn},
             success: function (r) {
                 setTimeout(function () {
                     $("#waitModal").modal('hide');
@@ -43,17 +43,17 @@
     {
         $(".hours").click(function () {
             $(".hours").hide();
-
-            $(this).next().css({"border": "2px solid #dadada", "background-color": "white"}).attr("contenteditable", "true");
+            $(this).next().css({"border": "2px solid #dadada", "background-color": "white", "padding": "5px 10px"}).attr("contenteditable", "true");
+            $(this).next().next().find("i").css({"display": "block"});
         });
-        $(".hours").parent().blur(function () {
-            $(".hours").show();
-
-            $(".editStart").parent().css({"border": "", "background-color": ""}).attr("contenteditable", "false");
-        });
+//        $(".hours").parent().blur(function () {
+//            $(".hours").show();
+//            $(".editStart").parent().css({"border": "", "background-color": ""}).attr("contenteditable", "false");
+//            $(this).next().next().find("i").css({"display": "none;"});
+//        });
     }
-    function editOnMouseHover(id, field) {
-        console.log(field);
+    function editOnMouseHover(id, field, tbl_nm) {
+//        console.log(tbl_nm);
         var value;
         if (field == 'vehicle')
         {
@@ -69,10 +69,13 @@
             console.log($.trim($("#minimum" + id).html()));
             value = $.trim($("#minimum" + id).html());
             console.log(value);
+        } else if (field == 'farmout_name')
+        {
+            value = $.trim($("#farmout_name" + id).html());
         }
         $.ajax({
             url: _U + 'home',
-            data: {editOnMouseHover: 1, id: id, field: field, value: value},
+            data: {editOnMouseHover: 1, id: id, field: field, tbl_nm: tbl_nm, value: value},
             success: function (r) {
                 if (r > 0)
                 {
@@ -82,7 +85,6 @@
             }
         });
     }
-
     function cityModal() {
         $("#AddCity").modal('show');
     }

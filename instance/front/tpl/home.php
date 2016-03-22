@@ -13,10 +13,10 @@
     </div>
     <div style="clear: both;"></div>
 </div>
-<div  class="col-lg-12 " style="margin-top: 20px">
+<div  class="col-lg-12 " style="margin-top: 2px">
     <div class="col-lg-10"> 
         <div class="pull-right " style="font-size: 14px;">
-            <span style="font-weight: bold;font-size: 16px;">Sort By :</span> <span style="color:#1294D5;cursor: pointer;" onclick="sort('affiliates')">Affiliates Name</span> | <span style="color:#1294D5;cursor: pointer;" onclick="sort('ratting')">Affiliates Rating</span> | <span style="color:#1294D5;cursor: pointer;">Price</span>
+            <span style="font-weight: bold;font-size: 16px;">Sort By :</span> <span style="color:#1294D5;cursor: pointer;" onclick="sort('affiliates')">Affiliates Name</span> | <span style="color:#1294D5;cursor: pointer;" onclick="sort('ratting')">Affiliates Rating</span> 
         </div> 
     </div>
     <div style="clear: both;"></div>

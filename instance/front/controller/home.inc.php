@@ -9,16 +9,6 @@ include _PATH . "instance/front/tpl/affiliate_edit.php";
 
 
 
-if ($_REQUEST['editOnMouseHover'] == 1) {
-    $id = $_REQUEST['id'];
-    $field = $_REQUEST['field'];
-
-    $fields[$field] = $_REQUEST['value'];
-    $condition = "id='{$id}'";
-    $edit = qu('affiliate_vehicles', $fields, $condition);
-    print $edit;
-    die;
-}
 if ($_REQUEST['getfilter'] == 1) {
     $search = $_REQUEST['search'];
     $sort = $_REQUEST['sortOn'];
@@ -31,10 +21,10 @@ if ($_REQUEST['getfilter'] == 1) {
     $where = rtrim($where, 'And');
     $groupBy = '';
     if ($sort == 'affiliates') {
-        $groupBy = 'group by farmout_name';
+        $groupBy = 'order by farmout_name';
     }
     if ($sort == 'ratting') {
-        $groupBy = 'group by rate';
+        $groupBy = 'order by rate';
     }
     $query = "select * from affiliates where {$where} {$groupBy}";
     $data = q($query);
@@ -110,13 +100,13 @@ if ($_REQUEST['addvehicle'] == 1) {
 if ($_REQUEST['editOnMouseHover'] == 1) {
     $id = $_REQUEST['id'];
     $field = $_REQUEST['field'];
-
+    $tbl_nm = $_REQUEST['tbl_nm'];
     $fields[$field] = $_REQUEST['value'];
     $condition = "id='{$id}'";
-    $edit = qu('affiliate_vehicles', $fields, $condition);
-    print $edit;
+    $edit = qu($tbl_nm, $fields, $condition);
     die;
 }
+
 $query = "select * from affiliates";
 $data = q($query);
 _cg("page_title", "Home");
