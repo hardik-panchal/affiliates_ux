@@ -22,7 +22,7 @@ if (isset($affiliates_edit) && !empty($affiliates_edit)) {
     $affiliates_id = $affiliates_edit['id'];
     $farmout_name = $affiliates_edit['farmout_name'];
     $city_id = $affiliates_edit['city'];
-//  
+  
     $address = $affiliates_edit['address'];
     $service_area = $affiliates_edit['service_area'];
     $notes = $affiliates_edit['notes'];
@@ -71,12 +71,7 @@ if (isset($affiliates_edit) && !empty($affiliates_edit)) {
                                     </div>
                                 </div>
 
-<!--                                <div class="form-group col-lg-12" style="display:none;">
-                                    <label for="inputoptions" style="text-align: left;margin-top: -6px;" class="col-lg-12 col-md-12 control-label">City</label>
-                                    <div class="col-lg-12 col-md-12">
-                                        <input type="text" class="form-control " name="fields[city]" id="city" value="<?php print $city_id; ?>" placeholder="Add your City">
-                                    </div>
-                                </div>-->
+
 
                                 <div class="form-group col-lg-12">
                                     <label for="inputoptions" style="text-align: left;margin-top: -6px;" class="col-lg-12 col-md-12 control-label">Contact Name</label>
@@ -102,16 +97,16 @@ if (isset($affiliates_edit) && !empty($affiliates_edit)) {
                                 <div class="form-group col-lg-12">
                                     <label for="inputPassword1" class="col-lg-3 col-md-2 control-label">City</label>
                                     <div class="col-lg-12 col-md-12">
-                                        <select class="form-control" name="fields[cityAffiliates]" id="cityAffiliates" required>
+                                        <select class="form-control" name="fields[city1]" id="city1" required>
                                             <option value="">Select</option>
                                             <?php
                                             $cities = q("select * from affiliates_city");
                                             foreach ($cities as $each_city):
                                                 ?>
                                                 <option value="<?php print $each_city['id'] ?>" <?php
-//                                        if ($cityId == $each_city['id']) {
-//                                            echo "selected";
-//                                        }
+                                        if ($city_id == $each_city['id']) {
+                                            echo "selected";
+                                        }
                                                 ?>><?php print $each_city['city']; ?></option>
                                                     <?php endforeach; ?>
                                         </select>

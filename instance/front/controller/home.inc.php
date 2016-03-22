@@ -8,15 +8,38 @@ $urlArgs = _cg("url_vars");
 include _PATH . "instance/front/tpl/affiliate_edit.php";
 
 
+if ($_REQUEST['Editvehicle'] == 1) {
+    $urlArgs = _cg("url_vars");
+    ob_start();
+    $id = $_REQUEST['vehicleId'];
+    $vehicle_edit = qs("select * from affiliate_vehicles where id = '{$id}'");
+    include _PATH . "instance/front/tpl/affiliate_vehicle_add.php";
+    $content = ob_get_contents();
+    ob_end_clean();
+    echo $content;
+    die;
+}
+if (isset($_REQUEST['AddVehiclePopup']) && $_REQUEST['AddVehiclePopup'] == '1') {
+    $urlArgs = _cg("url_vars");
+    ob_start();
+    include _PATH . "instance/front/tpl/affiliate_vehicle_add.php";
+    $content = ob_get_contents();
+    ob_end_clean();
+    echo $content;
+    die;
+}
+//------------------------------
+if ($_REQUEST['Editaffiliates'] == 1) {
+    $urlArgs = _cg("url_vars");
+    ob_start();
+    $id = $_REQUEST['affId'];
 
-if ($_REQUEST['editOnMouseHover'] == 1) {
-    $id = $_REQUEST['id'];
-    $field = $_REQUEST['field'];
+    $affiliates_edit = qs("select * from affiliates where id = '{$id}'");
 
-    $fields[$field] = $_REQUEST['value'];
-    $condition = "id='{$id}'";
-    $edit = qu('affiliate_vehicles', $fields, $condition);
-    print $edit;
+    include _PATH . "instance/front/tpl/affiliate_add.php";
+    $content = ob_get_contents();
+    ob_end_clean();
+    echo $content;
     die;
 }
 if ($_REQUEST['getfilter'] == 1) {
@@ -31,10 +54,10 @@ if ($_REQUEST['getfilter'] == 1) {
     $where = rtrim($where, 'And');
     $groupBy = '';
     if ($sort == 'affiliates') {
-        $groupBy = 'group by farmout_name';
+        $groupBy = 'order by farmout_name';
     }
     if ($sort == 'ratting') {
-        $groupBy = 'group by rate';
+        $groupBy = 'order by rate';
     }
     $query = "select * from affiliates where {$where} {$groupBy}";
     $data = q($query);
@@ -104,19 +127,26 @@ if ($_REQUEST['addvehicle'] == 1) {
     $fields['vehicle_no'] = $_REQUEST['vehicle_no'];
     $fields['rate_per_hour'] = $_REQUEST['hour_rate'];
     $fields['minimum'] = $_REQUEST['min_rate'];
-    qi("affiliate_vehicles", $fields);
+//    qi("affiliate_vehicles", $fields);
+    
+    if (isset($_REQUEST['edit_id']) && trim($_REQUEST['edit_id']) > 0) {
+        $update_aff = qu('affiliate_vehicles', $fields, " id = '" . trim($_REQUEST['edit_id']) . "'");
+//        $affiliates_insert_id = trim($_REQUEST['edit_id']);
+    } else {
+         qi('affiliate_vehicles', $fields, 'REPLACE');
+    }
 }
 
 if ($_REQUEST['editOnMouseHover'] == 1) {
     $id = $_REQUEST['id'];
     $field = $_REQUEST['field'];
-
+    $tbl_nm = $_REQUEST['tbl_nm'];
     $fields[$field] = $_REQUEST['value'];
     $condition = "id='{$id}'";
-    $edit = qu('affiliate_vehicles', $fields, $condition);
-    print $edit;
+    $edit = qu($tbl_nm, $fields, $condition);
     die;
 }
+
 $query = "select * from affiliates";
 $data = q($query);
 _cg("page_title", "Home");

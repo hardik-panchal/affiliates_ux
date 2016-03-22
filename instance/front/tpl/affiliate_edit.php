@@ -22,7 +22,7 @@ if ($_REQUEST['AddNewaffiliates'] == 1) {
     $set_date = explode("/", $_REQUEST['date']);
     $date = date("Y-m-d", strtotime($set_date[2] . "-" . $set_date[0] . "-" . $set_date[1]));
     $exp_date = date('Y-m-d', strtotime(trim($_REQUEST['expiration_date'])));
-    $city = $_REQUEST['cityName'];
+    $city = $_REQUEST['city1'];
     
     $input_data_array = array(
         'farmout_name' => _escape($_REQUEST['farmout_name']),

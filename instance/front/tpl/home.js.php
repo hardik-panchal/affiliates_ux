@@ -13,21 +13,41 @@
         });
     });
 
+    function editAffiliatesmodal(id) {
+
+        $.ajax({
+            url: _U + 'home/<?php print $urlArgs[0] ?>',
+            data: {Editaffiliates: 1, affId: id},
+            success: function (r) {
+                $("#affiliates_modal_content").html(r);
+                $("#AddAffiliates").modal('show');
+                $(function () {
+                    $("#accordion").accordion({
+                        heightStyle: "content"
+                    });
+                });
+                CallAllFunctionAtRefresh();
+            }
+        });
+    }
+
+
+
     $("#search").autocomplete({
         source: _U + 'home',
         minLength: 2,
         select: function (event, ui) {
         }
     });
-    function sort(sortBy){
-       search(sortBy);
+    function sort(sortBy) {
+        search(sortBy);
     }
-    function 
+
     function search(sortOn) {
         $("#waitModal").modal('show');
         $.ajax({
             url: _U + 'home',
-            data: {getfilter: 1, search: $("#search").val(),sortOn:sortOn},
+            data: {getfilter: 1, search: $("#search").val(), sortOn: sortOn},
             success: function (r) {
                 setTimeout(function () {
                     $("#waitModal").modal('hide');
@@ -43,17 +63,17 @@
     {
         $(".hours").click(function () {
             $(".hours").hide();
-
-            $(this).next().css({"border": "2px solid #dadada", "background-color": "white"}).attr("contenteditable", "true");
+            $(this).next().css({"border": "2px solid #dadada", "background-color": "white", "padding": "5px 10px"}).attr("contenteditable", "true");
+            $(this).next().next().find("i").css({"display": "block"});
         });
-        $(".hours").parent().blur(function () {
-            $(".hours").show();
-
-            $(".editStart").parent().css({"border": "", "background-color": ""}).attr("contenteditable", "false");
-        });
+//        $(".hours").parent().blur(function () {
+//            $(".hours").show();
+//            $(".editStart").parent().css({"border": "", "background-color": ""}).attr("contenteditable", "false");
+//            $(this).next().next().find("i").css({"display": "none;"});
+//        });
     }
-    function editOnMouseHover(id, field) {
-        console.log(field);
+    function editOnMouseHover(id, field, tbl_nm) {
+//        console.log(tbl_nm);
         var value;
         if (field == 'vehicle')
         {
@@ -69,10 +89,13 @@
             console.log($.trim($("#minimum" + id).html()));
             value = $.trim($("#minimum" + id).html());
             console.log(value);
+        } else if (field == 'farmout_name')
+        {
+            value = $.trim($("#farmout_name" + id).html());
         }
         $.ajax({
             url: _U + 'home',
-            data: {editOnMouseHover: 1, id: id, field: field, value: value},
+            data: {editOnMouseHover: 1, id: id, field: field, tbl_nm: tbl_nm, value: value},
             success: function (r) {
                 if (r > 0)
                 {
@@ -82,7 +105,6 @@
             }
         });
     }
-
     function cityModal() {
         $("#AddCity").modal('show');
     }
@@ -106,34 +128,8 @@
             });
         }
     }
-    function affiliateModal__() {
-        $("#AddAffiliates").modal('show');
-    }
-    function addAffiliates__() {
-        var affiliate = $("#affiliate").val();
-        var address = $("#address").val();
-        var contact = $("#contact").val();
 
-        var city = $("#cityAffiliates option:selected").val();
-//        alert(city);
 
-        if (affiliate == '' || city == '')
-        {
-            alert("Plz fill up the field");
-            return false;
-        } else {
-            showWait();
-
-            $.ajax({
-                url: _U + 'home',
-                data: {addAffiliate: 1, affiliate: affiliate, address: address, contact: contact, city: city},
-                success: function (r) {
-                    hideWait();
-                    $("#AddAffiliates").modal('hide');
-                }
-            });
-        }
-    }
 
     function Affiliatesmodal() {
 
@@ -166,6 +162,7 @@
     }
     function AddAffiliates(edit_id) {
 
+        var city1 = $("#city1 option:selected").val();
 
         //Service Area
         var chkServiceArea = [];
@@ -202,11 +199,11 @@
             // $("#chk_service_area").css("border", "1px solid red");
             $('#servicearea_error').show();
         } else {
-            showWait();
+//            showWait();
 
             $.ajax({
                 url: _U + 'home',
-                data: {AddNewaffiliates: 1, city: $("#city").val(),
+                data: {AddNewaffiliates: 1, city1: city1,
                     farmout_name: $("#farmout").val(),
                     service_area: chkServiceArea,
                     address: $("#address").val(),
@@ -229,7 +226,7 @@
                     } else {
                         _success("Affiliates Has Been Added Successfully..");
                     }
-
+                    search('');
                     $(".reset").val('');
                     $("#AddAffiliates").modal('hide');
                     $("#uploaded_insurance_copy_file").html('');
@@ -238,34 +235,35 @@
                     $("#uploaded_attachment_list").html('');
                     $(".vehicle_photos_nm").remove();
                     $("#uploaded_attachment_table").hide();
-                    if (edit_id > 0) {
-
-                        $.ajax({
-                            url: _U + 'affiliates_detail',
-                            data: {Getafflist: 1, affId: edit_id},
-                            success: function (r) {
-                                hideWait();
-                                $("#affiliatesList").html(r);
-                            }
-                        });
-                    } else {
-
-                        $.ajax({
-                            url: _U + 'affiliates',
-                            data: {Getafflist: 1, city: $("#city").val()},
-                            success: function (r) {
-                                hideWait();
-                                $("#affiliatesList").html(r);
-                                $("#AffiliatesTab").click();
-                                getaffCount('<?php print $urlArgs[0]; ?>');
-                            }
-                        });
-                    }
+//                    if (edit_id > 0) {
+//
+//                        $.ajax({
+//                            url: _U + 'affiliates_detail',
+//                            data: {Getafflist: 1, affId: edit_id},
+//                            success: function (r) {
+////                                hideWait();
+//                                $("#affiliatesList").html(r);
+//                            }
+//                        });
+//                    } else {
+//
+//                        $.ajax({
+//                            url: _U + 'affiliates',
+//                            data: {Getafflist: 1, city: $("#city").val()},
+//                            success: function (r) {
+////                                hideWait();
+//                                $("#affiliatesList").html(r);
+//                                $("#AffiliatesTab").click();
+//                                getaffCount('<?php print $urlArgs[0]; ?>');
+//                            }
+//                        });
+//                    }
 
                 }
             });
         }
     }
+
     function DatePickerBlock() {
         $(document).ready(function () {
             /*
@@ -294,9 +292,20 @@
         $(".ui-accordion-header.ui-state-active ").css("background", "white");
     }
     function vehicleModal() {
-        $("#AddVehicles").modal('show');
+//        $("#AddVehicles").modal('show');
+        $.ajax({
+            url: _U + 'home',
+            data: {AddVehiclePopup: 1},
+            success: function (r) {
+                $("#vehicle_modal_content").html(r);
+//                $("#affiliates_id").val(affId);
+                $("#Addvehicle").modal('show');
+                CallAllFunctionAtRefresh();
+            }
+        });
     }
-    function addVehicle() {
+    function addVehicle(edit_id) {
+
         var vehicle = $("#vehicle").val();
         var vehicle_no = $("#vehicle_no").val();
         var min_rate = $("#min_rate").val();
@@ -308,17 +317,35 @@
             alert("Plz fill up the field");
             return false;
         } else {
-            showWait();
+//            showWait();
 
             $.ajax({
                 url: _U + 'home',
-                data: {addvehicle: 1, affiliateVehicle: affiliateVehicle, vehicle: vehicle, vehicle_no: vehicle_no, min_rate: min_rate, hour_rate: hour_rate},
+                data: {addvehicle: 1, affiliateVehicle: affiliateVehicle, vehicle: vehicle, vehicle_no: vehicle_no, min_rate: min_rate, hour_rate: hour_rate, edit_id: edit_id},
                 success: function (r) {
-                    hideWait();
-                    $("#AddVehicles").modal('hide');
+                    if (edit_id > 0) {
+                        _success("Vehicle Has Been Updated Successfully");
+                    } else {
+                        _success("Vehicle Has Been Added Successfully..");
+                    }
+                    search('');
+                    $("#Addvehicle").modal('hide');
                 }
             });
         }
+    }
+    function Editvehiclemodal(vehicleId) {
+        $.ajax({
+            url: _U + 'home/<?php print $urlArgs[0] ?>',
+            data: {Editvehicle: 1, vehicleId: vehicleId},
+            success: function (r) {
+                $("#vehicle_modal_content").html(r);
+                $("#affiliates_vehicle_id").val(vehicleId);
+                $("#Addvehicle").modal('show');
+
+                CallAllFunctionAtRefresh();
+            }
+        });
     }
     function DeleteAttachment(file_id, file_name, type) {
         if (file_name != '' && file_id != '') {
