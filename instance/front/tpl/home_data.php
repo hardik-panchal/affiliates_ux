@@ -16,7 +16,7 @@ if (!empty($data)):
             <div class="col-md-4 col-lg-4" style="padding-left:20px">
                 <span  style="font-size: 17px;color:black;padding-top:1px;">
 
-                    <span class="hours" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>&nbsp;
+                    <!--<span class="hours" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>&nbsp;-->
                     <strong id="farmout_name<?php print $each_data['id']; ?>"><?php print $each_data['farmout_name']; ?></strong>
                     <span>
                         <i class="glyphicon glyphicon-ok pull-right" style="display: none;cursor: pointer;margin-right: 5px;" onclick="editOnMouseHover('<?php print $each_data['id']; ?>', 'farmout_name', 'affiliates')">
@@ -58,7 +58,7 @@ if (!empty($data)):
                 <br/>
                 <br/>
                 <br/>
-                <a onclick="editAffiliatesmodal('<?php print $each_data['id']; ?>');"><i class="glyphicon glyphicon-edit" title="Edit"></i></a>&nbsp;
+                <a onclick="editAffiliatesmodal('<?php print $each_data['id']; ?>');" class="col-lg-3 col-lg-offset-4"><i class="glyphicon glyphicon-edit" title="Edit" style="font-size: 20px;cursor: pointer;"></i></a>&nbsp;
 
             </div>
             <div class="col-md-8 col-lg-8 table-responsive">
@@ -68,7 +68,6 @@ if (!empty($data)):
                         <th style="font-size:18px;border-top: none;border-bottom: 2px solid #ddd;width: 20%;">$/Hour</th>    
                         <th style="font-size:18px;border-top: none;border-bottom: 2px solid #ddd;width: 30%;">Minimum Hours</th>    
                         <th style="font-size:18px;border-top: none;border-bottom: 2px solid #ddd;width: 10%;"></th>    
-
                     </tr>
 
                     <?php

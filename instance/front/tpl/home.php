@@ -42,13 +42,12 @@
 <div class="modal fade" id="AddCity"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
     <div class="modal-dialog" style="width:800px;">
-        <div class="modal-content" >
+        <div class="modal-content">
             <div class="modal-header" style="background-color: #EAEAEA;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Add City</h4>
             </div>
-            <div class="modal-body" >
-
+            <div class="modal-body">
                 <form  class="form-horizontal" role="form">
                     <div class="form-group ">
                         <label  class="col-lg-3 col-md-2 control-label">Add City</label>
