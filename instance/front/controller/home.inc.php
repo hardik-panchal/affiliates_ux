@@ -8,7 +8,40 @@ $urlArgs = _cg("url_vars");
 include _PATH . "instance/front/tpl/affiliate_edit.php";
 
 
+if ($_REQUEST['Editvehicle'] == 1) {
+    $urlArgs = _cg("url_vars");
+    ob_start();
+    $id = $_REQUEST['vehicleId'];
+    $vehicle_edit = qs("select * from affiliate_vehicles where id = '{$id}'");
+    include _PATH . "instance/front/tpl/affiliate_vehicle_add.php";
+    $content = ob_get_contents();
+    ob_end_clean();
+    echo $content;
+    die;
+}
+if (isset($_REQUEST['AddVehiclePopup']) && $_REQUEST['AddVehiclePopup'] == '1') {
+    $urlArgs = _cg("url_vars");
+    ob_start();
+    include _PATH . "instance/front/tpl/affiliate_vehicle_add.php";
+    $content = ob_get_contents();
+    ob_end_clean();
+    echo $content;
+    die;
+}
+//------------------------------
+if ($_REQUEST['Editaffiliates'] == 1) {
+    $urlArgs = _cg("url_vars");
+    ob_start();
+    $id = $_REQUEST['affId'];
 
+    $affiliates_edit = qs("select * from affiliates where id = '{$id}'");
+
+    include _PATH . "instance/front/tpl/affiliate_add.php";
+    $content = ob_get_contents();
+    ob_end_clean();
+    echo $content;
+    die;
+}
 if ($_REQUEST['getfilter'] == 1) {
     $search = $_REQUEST['search'];
     $sort = $_REQUEST['sortOn'];
@@ -94,7 +127,14 @@ if ($_REQUEST['addvehicle'] == 1) {
     $fields['vehicle_no'] = $_REQUEST['vehicle_no'];
     $fields['rate_per_hour'] = $_REQUEST['hour_rate'];
     $fields['minimum'] = $_REQUEST['min_rate'];
-    qi("affiliate_vehicles", $fields);
+//    qi("affiliate_vehicles", $fields);
+    
+    if (isset($_REQUEST['edit_id']) && trim($_REQUEST['edit_id']) > 0) {
+        $update_aff = qu('affiliate_vehicles', $fields, " id = '" . trim($_REQUEST['edit_id']) . "'");
+//        $affiliates_insert_id = trim($_REQUEST['edit_id']);
+    } else {
+         qi('affiliate_vehicles', $fields, 'REPLACE');
+    }
 }
 
 if ($_REQUEST['editOnMouseHover'] == 1) {
