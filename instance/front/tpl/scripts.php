@@ -70,16 +70,4 @@
         }
     }
 
-
-
 </script>
-
-<?php if (_cg('url') == 'operatordashboard'): ?>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            //LoadAddressHelp();
-        })
-    </script>
-<?php endif; ?>
-
-

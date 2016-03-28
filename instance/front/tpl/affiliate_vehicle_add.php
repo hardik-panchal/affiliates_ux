@@ -1,6 +1,6 @@
 <div class="modal-dialog" style="width:800px;">
     <div class="modal-content" >
-        <div class="modal-header" style="background-color: #EAEAEA;">
+        <div class="modal-header" style="">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">
                 <?php if ($affId > 0): ?>
@@ -93,7 +93,7 @@
 
         </div>
 
-        <div class="modal-footer" style="background-color: #EAEAEA;">
+        <div class="modal-footer" style="">
             <input type="hidden" name="fields[affiliates_vehicle_id]" id="affiliates_vehicle_id" value="<?php print $affiliates_vehicle_id; ?>">
             <?php if (isset($vehicle_edit) && count($vehicle_edit) > 0) { ?>
                 <button type="button" class="btn btn-primary" onclick="addVehicle('');">Update</button>

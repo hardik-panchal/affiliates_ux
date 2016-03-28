@@ -1,8 +1,6 @@
 <?php include "jquery_ui.php"; ?>
 <?php include "message.php" ?>
 
-
-
 <script type="text/javascript">
     $(document).ready(function () {
         DatePickerBlock();
@@ -10,14 +8,12 @@
             if (e.keyCode == 13)
                 search('');
         });
+        updateSearchCount("<?php print count($data); ?>");
     });
 
-    /*$("#search").autocomplete({
-        source: _U + 'home',
-        minLength: 2,
-        select: function (event, ui) {
-        }
-    });*/
+    function updateSearchCount(count){
+       $(".totalResult").html(count + " Affiliates Found!") 
+    }
     function sort(sortBy) {
         search(sortBy);
     }
@@ -189,10 +185,10 @@
         delay: 0,
         minLength: 3,
         //source: data
-        source:  _U + 'home', //source: data
+        source: _U + 'home', //source: data
         select: function (a, b) {
             $("#search").val(b.item.label);
-                       return false;
+            return false;
         }
     });
 </script>

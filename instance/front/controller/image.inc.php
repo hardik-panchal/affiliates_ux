@@ -29,10 +29,7 @@ if ($_REQUEST['id'] == $urlArgs[0]) {
             $name = $_FILES["image"]["name"];
             $ext = end((explode(".", $name))); # extra () to prevent notice
 
-            echo $ext;
-
-
-            echo $file_name = $id . "_" . date("Y_m_d_H_i_s") . "." . $ext;
+                         $file_name = $id . "_" . date("Y_m_d_H_i_s") . "." . $ext;
 
             $location = _PATH . "instance/front/media/uploads/" . $file_name;
             move_uploaded_file($file_tmp, $location);
