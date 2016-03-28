@@ -10,10 +10,8 @@ $affiliates = q("select * from  affiliates");
 foreach ($affiliates as $each_data) {
     $search = $each_data['farmout_name'];
 
-    $city = qs("select * from affiliates_city where id='{$each_data['city']}'");
-    $search = $search . '_' . $city['city'];
-
-
+    $search = $search . '_' . $each_data['city'];
+    
     $vehicle = q("select * from affiliate_vehicles where aff_id='{$each_data['id']}'");
     foreach ($vehicle as $vehicleData) {
         $search = $search . '_' . $vehicleData['vehicle'];

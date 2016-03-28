@@ -23,7 +23,8 @@
         </style>
     </head>
     <body>
-        <div class="" >            
+        <div class="" >  
+            <?php echo $no_visible_elements."++++";?>
             <?php if ($no_visible_elements) : ?>
                 <?php include $modulePage; ?>
             <?php else: ?> 
