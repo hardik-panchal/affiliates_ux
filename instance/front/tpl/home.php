@@ -57,10 +57,11 @@
     <div class="modal-dialog" id="image_content">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #EAEAEA;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <b>Image</b>
             </div>
             <div class="modal-body ">
-                <iframe src="<?php echo _U."image/85";?>" style=" border: medium none;width: 100%;"></iframe> 
+                <iframe src="<?php echo _U."image/85";?>" style=" border: medium none;width: 100%;height: 400px;"></iframe> 
             </div>
             <div class="modal-footer" style="background-color: #EAEAEA;height:55px;">
                 <div style="margin-top:-3px;">                  

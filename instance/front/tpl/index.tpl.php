@@ -24,9 +24,17 @@
     </head>
     <body>
         <div class="" >  
-            <?php echo $no_visible_elements."++++";?>
+           
             <?php if ($no_visible_elements) : ?>
-                <?php include $modulePage; ?>
+              <div class="container" >                    
+                    <div class="row">                        
+                        <div id="div_main_content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content_body" style="box-shadow:2px 2px 5px 2px #004e99;">
+                            <?php if (!(@include $modulePage)) : ?>
+                                <?php include "404.php"; ?>
+                            <?php endif; ?>
+                        </div>                        
+                    </div>
+                </div>	
             <?php else: ?> 
                 <?php include_once('left.php'); ?>
                 <div class="container" style="margin-top: 66px;">                    
@@ -106,19 +114,5 @@
             });
         </script>
 
-
     </body>
 </html>
-<?php
-if (isset($_mail_send_arr) && !empty($_mail_send_arr)) {
-    if (!empty($_mail_send_arr['to'])) {
-        if (isset($_mail_send_arr['from_email']) && trim($_mail_send_arr['from_email']) != '') {
-            $mail_from_info['name'] = trim($_mail_send_arr['from_name']);
-            $mail_from_info['email'] = trim($_mail_send_arr['from_email']);
-            $mail_res = _mail_with_from($_mail_send_arr['to'], $_mail_send_arr['subject'], $_mail_send_arr['content'], $mail_from_info);
-        } else {
-            $mail_res = _mail($_mail_send_arr['to'], $_mail_send_arr['subject'], $_mail_send_arr['content']);
-        }
-    }
-}
-?>
