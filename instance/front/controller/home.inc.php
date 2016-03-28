@@ -11,8 +11,8 @@ if ($_REQUEST['getfilter'] == 1) {
     $fields['ip'] = $_SERVER['REMOTE_ADDR'];
     $fields['sort'] = $_REQUEST['sortOn'];
     qi('search', $fields);
-    
-    
+
+
     $serch_keyword = explode(" ", $search);
 
     $result = array();
@@ -238,7 +238,7 @@ if ($_REQUEST['addInsurance'] == 1) {
 
     die;
 }
-$query = "select * from affiliates";
+$query = "select * from affiliates limit 0,10  ";
 $data = q($query);
 _cg("page_title", "Home");
 $jsInclude = "home.js.php";
