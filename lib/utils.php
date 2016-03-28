@@ -306,4 +306,7 @@ function castString(&$item) {
     $item = (string) $item;
 }
 
+function _isLocalMachine() {
+    return IS_DEV_ENV; //$_SERVER['HTTP_HOST'] == 'localhost' ? true : false;
+}
 ?>

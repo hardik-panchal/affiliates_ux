@@ -8,6 +8,7 @@
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="<?php print _MEDIA_URL ?>css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php print _MEDIA_URL ?>css/style.css" rel="stylesheet" type="text/css" />
+        <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <div class="" >  
@@ -86,6 +87,6 @@
                 </div>
             </div>
         </div>
-        
+
     </body>
 </html>

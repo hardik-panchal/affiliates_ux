@@ -1,11 +1,14 @@
 <?php
+_errors_on();
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//$apiLimo = new apiLimo();
+//$data = $apiLimo->GetAffiliates();
+//d($data);
+//$_SESSION['aff'] = $data;
+d($_SESSION['aff']);
 
+
+die;
 $affiliates = q("select * from  affiliates");
 foreach ($affiliates as $each_data) {
     $city = qs("select * from affiliates_city where id='{$each_data['city']}'");
