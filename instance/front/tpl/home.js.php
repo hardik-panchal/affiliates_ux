@@ -10,9 +10,17 @@
         });
         updateSearchCount("<?php print count($data); ?>");
     });
-
-    function updateSearchCount(count){
-       $(".totalResult").html(count + " Affiliates Found!") 
+    function updateSearchCount(count) {
+        switch (count) {
+            case 0:
+                $(".totalResult").hide();
+                break;
+            case 1:
+                $(".totalResult").html(count + " Affiliate Found!").show();
+                break;
+            default:
+                $(".totalResult").html(count + " Affiliates Found!").show();
+        }
     }
     function sort(sortBy) {
         search(sortBy);
@@ -180,7 +188,6 @@
             });
         }
     });
-
     $("#search").catcomplete({
         delay: 0,
         minLength: 3,
@@ -188,6 +195,7 @@
         source: _U + 'home', //source: data
         select: function (a, b) {
             $("#search").val(b.item.label);
+            search('');
             return false;
         }
     });

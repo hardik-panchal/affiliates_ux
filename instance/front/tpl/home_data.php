@@ -135,14 +135,12 @@
 
     <?php endforeach; ?>
 <?php else: ?>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color:red;margin-top: 10px;text-align:center;color:red;font-weight:bold;padding:5px;font-size:13px;">Data Not available</div></td>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color:red;margin-top: 10px;text-align:center;color:red;font-weight:bold;padding:5px;font-size:13px;">Sorry, No affiliates found!</div></td>
 <?php endif; ?>
 
-<?php if (count($data) > 1): ?>
-    <script type="text/javascript">
-        try {
-            updateSearchCount("<?php print count($data); ?>");
-        } catch (e) {
-        }
-    </script>    
-<?php endif; ?>
+<script type="text/javascript">
+    try {
+        updateSearchCount("<?php print count($data); ?>");
+    } catch (e) {
+    }
+</script>    

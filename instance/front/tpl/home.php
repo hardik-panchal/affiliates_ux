@@ -1,13 +1,12 @@
 <!--//search-->
 <div  class="col-lg-12 " style="margin-top: 50px;">
     <div class="col-lg-10" style="padding:0px">
-        <input style=";height:50px;border-radius: 0px; " type="text" name="search" id="search"
-               class="form-control ui-autocomplete-input " placeholder="Search" autocomplete="off" >
+        <input style=";height:50px;border-radius: 0px; " type="text" name="search" id="search" class="form-control ui-autocomplete-input " placeholder="Search Affiliates. Example: Sprinter California" autocomplete="off" >
     </div>
     <div style="padding:0px" class="col-lg-2">
         <span class="btn font-weight-bold form-control searchBtn" onclick="search('')" >
             <i class="fa fa-search"></i>
-            Search
+            Search 
         </span>
         <!--<a href="<?php print _U ?>home" class=" btn btn-warning btn-sm">Reset</a>-->
     </div>
