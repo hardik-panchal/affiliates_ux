@@ -3,14 +3,12 @@
 if (isset($_REQUEST['delete_attachment_file']) && $_REQUEST['delete_attachment_file'] == 1) {
     $attach_deleted_id = '0';
     if (trim($_REQUEST['file_id']) > 0) {
-
         $res_delete = qd("affiliates_attachment", " id = '{$_REQUEST['file_id']}'");
         $attach_deleted_id = $_REQUEST['file_id'];
         if ($res_delete) {
             unlink(_PATH . "affiliates_attachment/" . trim($_REQUEST['file_name']));
         }
     }
-
     echo $attach_deleted_id;
     die;
 }

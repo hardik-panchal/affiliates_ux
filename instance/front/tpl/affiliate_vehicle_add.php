@@ -1,26 +1,9 @@
-<?php
-$affiliates_vehicle_id = '';
-
-$vehicle = '';
-$vehicle_no = '';
-$rate_per_hour = '';
-$minimum = '';
-
-if (isset($vehicle_edit) && !empty($vehicle_edit)) {
-    $affiliates_vehicle_id = $vehicle_edit['id'];
-    $vehicle = $vehicle_edit['vehicle'];
-    $vehicle_no = $vehicle_edit['vehicle_no'];
-    $rate_per_hour = $vehicle_edit['rate_per_hour'];
-    $minimum = $vehicle_edit['minimum'];
-    $affId = $vehicle_edit['aff_id'];
-}
-?>
 <div class="modal-dialog" style="width:800px;">
     <div class="modal-content" >
         <div class="modal-header" style="background-color: #EAEAEA;">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">
-                <?php if ($affiliates_vehicle_id > 0): ?>
+                <?php if ($affId > 0): ?>
                     <b>Edit Vehicle</b>
                 <?php else: ?>
                     <b>Add Vehicle</b>
@@ -28,68 +11,96 @@ if (isset($vehicle_edit) && !empty($vehicle_edit)) {
             </h4>
         </div>
         <div class="modal-body" >
-
-            <form  class="form-horizontal" role="form">
-                <div class="form-group ">
-                    <label  class="col-lg-3 col-md-2 control-label">Vehicle</label>
-                    <div class="col-lg-6">
-                        <input type="text" class="form-control" name="vehicle" id="vehicle" placeholder="Add Vehicle" value="<?php print $vehicle; ?>"
-                               data-toggle="popover" data-placement="bottom" data-content="Plz fill up the field" required/>
-                    </div>
+            <form  class="form-horizontal" role="form" id="vehicle">
+                <div class="form-group"  <?php
+                if (isset($affId) && $affId > 0) {
+                    echo "style='display:none;'";
+                }
+                ?>>
+                    <input type="text" class="form-control" name="affiliateVehicle" id="affiliateVehicle" required value="<?php echo $affId; ?>"/>
                 </div>
-                <div class="form-group ">
-                    <label  class="col-lg-3 col-md-2 control-label"># Vehicle</label>
-                    <div class="col-lg-6">
-                        <input type="text" class="form-control" name="vehicle_no" id="vehicle_no" placeholder="Add Vehicle #" value="<?php print $vehicle_no; ?>"
-                               data-toggle="popover" data-placement="bottom" data-content="Plz fill up the field" required/>
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <label  class="col-lg-3 col-md-2 control-label">Minimum</label>
-                    <div class="col-lg-6">
-                        <input type="text" class="form-control" name="min_rate" id="min_rate" placeholder="Add Minimum Rate" value="<?php print $minimum; ?>"
-                               data-toggle="popover" data-placement="bottom" data-content="Plz fill up the field" required/>
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <label  class="col-lg-3 col-md-2 control-label">Rate Per Hour</label>
-                    <div class="col-lg-6">
-                        <input type="text" class="form-control" name="hour_rate" id="hour_rate" placeholder="Add Rate Per Hours" value="<?php print $rate_per_hour; ?>"
-                               data-toggle="popover" data-placement="bottom" data-content="Plz fill up the field" required/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword1" class="col-lg-3 col-md-2 control-label">Affiliates</label>
-                    <div class="col-lg-6">
-                        <select class="form-control" name="affiliateVehicle" id="affiliateVehicle" required>
-                            <option value="">Select</option>
+                <div class="col-lg-12">
+                    <table style="background: #f0f0f0;" id="table" class="table table-condensed sortable table-bordered">
+                        <thead style="">
+                            <tr style="background: -moz-linear-gradient(center top , #f2f2f2, #dadada) repeat scroll 0 0 #CFD1CF;">
+                                <th style="padding:5px;width:230px;color:#1294D5;text-align:center">Vehicle</th>
+                                <th style="padding:5px;width:65px;text-align: left;color:#1294D5;text-align:center">#</th>
+                                <th style="padding:5px;width:50px;text-align: left;color:#1294D5;text-align:center">Rate/Hour</th>
+                                <th style="padding:5px;width:85px;text-align: left;color:#1294D5;text-align:center">Minimum Hours</th>
+                                <th style="padding:5px;width:90px;text-align: left;color:#1294D5;text-align:center">Flat Rate</th>
+                                <th style="padding:5px;text-align: left;color:#1294D5;text-align:center;font-size:12px">Cancellation Policy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <?php
-                            $affi = q("select * from affiliates");
-                            foreach ($affi as $each_data):
+                            for ($i = 0; $i < count($vehicle_edit); $i++) {
                                 ?>
-                                <option value="<?php print $each_data['id'] ?>" <?php
-                                if ($affId == $each_data['id']) {
-                                    echo "selected";
-                                }
-                                ?>><?php print $each_data['farmout_name']; ?></option>
-                                    <?php endforeach; ?>
-                        </select>
-                    </div>
+                                <tr>
+                                    <td style="padding:10px">
+                                        <input type="text" value="<?php echo $vehicle_edit[$i]['vehicle']; ?>" class="form-control input-small" name="vr[type][<?php echo $i; ?>]">
+                                    </td>
+                                    <td style="padding:10px">
+                                        <input type="text" value="<?php echo $vehicle_edit[$i]['vehicle_no']; ?>" class="form-control input-small" name="vr[pax][<?php echo $i; ?>]">
+                                    </td>
+                                    <td style="padding:10px">
+                                        <input type="text" value="<?php echo $vehicle_edit[$i]['rate_per_hour']; ?>" class="form-control input-small" name="vr[rate][<?php echo $i; ?>]">
+                                    </td>
+                                    <td style="padding:10px">
+                                        <input type="text" value="<?php echo $vehicle_edit[$i]['minimum']; ?>" class="form-control input-small" name="vr[min_hour][<?php echo $i; ?>]">
+                                    </td>																											
+                                    <td style="padding:10px">
+                                        <input type="text" value="<?php echo $vehicle_edit[$i]['flat_rate']; ?>" class="form-control input-small" name="vr[flat_rate][<?php echo $i; ?>]">
+                                    </td>
+                                    <td style="padding:10px">
+                                        <input type="text" value="<?php echo $vehicle_edit[$i]['cxl_policy']; ?>" class="form-control input-small" name="vr[cxl][<?php echo $i; ?>]">
+                                    </td>
+                                </tr>
+                            <input type="hidden" name="vr[edit_id][<?php echo $i; ?>]" value="<?php echo $vehicle_edit[$i]['id']; ?>">
+
+                            <?php
+                        }
+                        for ($i = count($vehicle_edit); $i < count($vehicle_edit) + 2; $i++) {
+                            ?>
+                            <tr>
+                                <td style="padding:10px">
+                                    <input type="text" value="" class="form-control input-small" name="vr[type][<?php echo $i; ?>]">
+                                </td>
+                                <td style="padding:10px">
+                                    <input type="text" value="" class="form-control input-small" name="vr[pax][<?php echo $i; ?>]">
+                                </td>
+                                <td style="padding:10px">
+                                    <input type="text" value="" class="form-control input-small" name="vr[rate][<?php echo $i; ?>]">
+                                </td>
+                                <td style="padding:10px">
+                                    <input type="text" value="" class="form-control input-small" name="vr[min_hour][<?php echo $i; ?>]">
+                                </td>																											
+                                <td style="padding:10px">
+                                    <input type="text" value="" class="form-control input-small" name="vr[flat_rate][<?php echo $i; ?>]">
+                                </td>
+                                <td style="padding:10px">
+                                    <input type="text" value="" class="form-control input-small" name="vr[cxl][<?php echo $i; ?>]">
+                                </td>
+                            </tr>
+                            <input type="hidden" name="vr[edit_id][<?php echo $i; ?>]" value="0">
+
+                            <?php
+                        }
+                        ?>                               
+                        </tbody>
+                    </table>
                 </div>
             </form>
+
         </div>
 
         <div class="modal-footer" style="background-color: #EAEAEA;">
             <input type="hidden" name="fields[affiliates_vehicle_id]" id="affiliates_vehicle_id" value="<?php print $affiliates_vehicle_id; ?>">
-            <?php if ($affiliates_vehicle_id > 0) { ?>
-                <button type="button" class="btn btn-primary" onclick="addVehicle('<?php print $affiliates_vehicle_id; ?>');">Update</button>
+            <?php if (isset($vehicle_edit) && count($vehicle_edit) > 0) { ?>
+                <button type="button" class="btn btn-primary" onclick="addVehicle('');">Update</button>
             <?php } else { ?>
                 <button type="button" class="btn btn-primary" onclick="addVehicle('0');">Add</button>
             <?php } ?>
-
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
         </div>
-
-    </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
+    </div>
+</div>

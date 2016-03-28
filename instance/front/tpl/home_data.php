@@ -6,33 +6,39 @@
     .font-weight-bold{
         font-weight: bold;  
     }
-</style><?php
+    .thStyle
+    {
+        font-size:17px;
+        border-top: none;
+        border-bottom: 2px solid #ddd;
+        color: grey;
+    }
+</style>
+
+
+<?php
 if (!empty($data)):
     ?> 
-
+    <div class="pull-right " style="font-size: 14px;color: gray;margin-bottom: -15px;">
+        <span style="font-weight: bold;">Sort By : </span><span style="cursor: pointer;" onclick="sort('affiliates')">Affiliates Name</span> | <span style="cursor: pointer;" onclick="sort('ratting')">Affiliates Rating</span> 
+    </div> 
+<div style="clear:both"></div>
     <?php foreach ($data as $each_data): ?>
 
-        <div class="panel panel-default" style="padding-top: 10px;margin-top:20px;background-color:white;box-shadow:0 1px 0 rgba(0, 0, 0, 0.4);padding-bottom: 10px;">
+        <div class="panel panel-default" style="padding-top: 10px;margin-top:20px;background-color:white;box-shadow:0 1px 0 rgba(0, 0, 0, 0.4);">
             <div class="col-md-4 col-lg-4" style="padding-left:20px">
                 <span  style="font-size: 17px;color:black;padding-top:1px;">
 
-                    <!--<span class="hours" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>&nbsp;-->
+
                     <strong id="farmout_name<?php print $each_data['id']; ?>"><?php print $each_data['farmout_name']; ?></strong>
-                    <span>
-                        <i class="glyphicon glyphicon-ok pull-right" style="display: none;cursor: pointer;margin-right: 5px;" onclick="editOnMouseHover('<?php print $each_data['id']; ?>', 'farmout_name', 'affiliates')">
-                        </i> 
-                    </span>
+
                     </br>
                     <span style="font-family:verdana;color:grey; text-decoration:none;font-size:14px;line-height:18px;">
                         <?php
                         if ($each_data['address']) {
-                            print $each_data['address'] . ',';
+                            print $each_data['address'] . "<br/>";
                         }
-                        $city = qs("select * from affiliates_city where id='{$each_data['city']}'");
-
-                        if ($city) {
-                            print $city['city'];
-                        }
+                        print $each_data['city'];
                         ?> 
                     </span>
                 </span>
@@ -55,19 +61,16 @@ if (!empty($data)):
                         ?>
                     </span>
                 </span>
-                <br/>
-                <br/>
-                <br/>
-                <a onclick="editAffiliatesmodal('<?php print $each_data['id']; ?>');" class="col-lg-3 col-lg-offset-4"><i class="glyphicon glyphicon-edit" title="Edit" style="font-size: 20px;cursor: pointer;"></i></a>&nbsp;
+
 
             </div>
             <div class="col-md-8 col-lg-8 table-responsive">
                 <table class="table table-condensed table-hover ">
                     <tr>
-                        <th style="font-size:18px;border-top: none;border-bottom: 2px solid #ddd;width: 40%;">Vehicle Name</th>    
-                        <th style="font-size:18px;border-top: none;border-bottom: 2px solid #ddd;width: 20%;">$/Hour</th>    
-                        <th style="font-size:18px;border-top: none;border-bottom: 2px solid #ddd;width: 30%;">Minimum Hours</th>    
-                        <th style="font-size:18px;border-top: none;border-bottom: 2px solid #ddd;width: 10%;"></th>    
+                        <th class="thStyle" style="width: 40%;">Vehicle Name</th>    
+                        <th class="thStyle" style="width: 20%;">$/Hour</th>    
+                        <th class="thStyle" style="width: 25%;">Minimum Hours</th>    
+                        <th class="thStyle" style="width: 30%;">Flat Rate</th>    
                     </tr>
 
                     <?php
@@ -86,65 +89,73 @@ if (!empty($data)):
                         ?>
                         <tr>
                             <td class="text-capitalize text-success font-weight-bold" >
-                                <span class="hours" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>&nbsp;
-                                <span  id="vehicle<?php print $each_vehicle['id']; ?>"> 
-                                    <?php print $each_vehicle['vehicle']; ?> 
-                                </span>
-                                <span>
-                                    <i class="glyphicon glyphicon-ok pull-right" style="display: none;cursor: pointer;margin-right: 5px;" onclick="editOnMouseHover('<?php print $each_vehicle['id']; ?>', 'vehicle', 'affiliate_vehicles')">
-                                    </i> 
-                                </span>
+                                <?php print $each_vehicle['vehicle']; ?> 
                             </td>
                             <td >
-                                <span class="hours" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>&nbsp;
 
-                                <?php if ($each_vehicle['rate_per_hour']) { ?>$<?php } ?>
-                                <span  id="rate_per_hour<?php print $each_vehicle['id']; ?>">
-                                    <?php
-                                    if ($each_vehicle['rate_per_hour']) {
-                                        print $each_vehicle['rate_per_hour'];
-                                    } else {
-                                        print 'N/A ';
-                                    }
-                                    ?>                                    
-                                </span>
+                                <?php
+                                if ($each_vehicle['rate_per_hour']) {
+                                    print "$" . $each_vehicle['rate_per_hour'];
+                                } else {
+                                    print 'N/A ';
+                                }
+                                ?>                                    
 
-                                / Hours
-                                <span><i class="glyphicon glyphicon-ok pull-right" style="display: none;cursor: pointer;margin-right: 5px;" onclick="editOnMouseHover('<?php print $each_vehicle['id']; ?>', 'rate_per_hour', 'affiliate_vehicles')"></i> </span>
+                                / Hour
                             </td>
                             <td>
-                                <span class="hours" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>&nbsp;
-                                <span  id="minimum<?php print $each_vehicle['id']; ?>">
-                                    <?php
-                                    if ($each_vehicle['minimum']) {
-                                        print $each_vehicle['minimum'];
-                                    } else {
-                                        print 'N/A  ';
-                                    }
-                                    ?>
+                                <?php
+                                if ($each_vehicle['minimum']) {
+                                    print $each_vehicle['minimum'];
+                                } else {
+                                    print 'N/A  ';
+                                }
+                                ?>
 
-                                </span> hours min
-                                <span><i class="glyphicon glyphicon-ok pull-right" style="display: none;cursor: pointer;margin-right: 5px;" onclick="editOnMouseHover('<?php print $each_vehicle['id']; ?>', 'minimum', 'affiliate_vehicles')"></i> </span>
+                                hours min
+
                             </td>
                             <td>
-                                <a onclick="Editvehiclemodal('<?php print $each_vehicle['id']; ?>');"><i class="glyphicon glyphicon-edit" title="Edit"></i></a>&nbsp;
-
+                                $<?php
+                                if ($each_vehicle['flat_rate']) {
+                                    print $each_vehicle['flat_rate'];
+                                } else {
+                                    print 'N/A  ';
+                                }
+                                ?>
                             </td>
                         </tr>
-
-
-
                     <?php endforeach; ?>
 
                 </table>
-                <!--<a onclick=""> <span class="fa fa-edit" title="Edit Vehicle Info"></span></a>-->
-
             </div>
             <div class="clearfix"></div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-size: 11px;color: #1294D5;margin-top: 10px;margin-bottom: 5px;">
+
+                <a onclick="viewImage('<?php print $each_data['id']; ?>');" style="cursor: pointer;color: #1294D5">Vehicle Photos </a>&nbsp;|&nbsp;
+                <a onclick="viewInsurance('<?php print $each_data['id']; ?>');" style="cursor: pointer;color: #1294D5;">Insurance Copy </a>
+                <ul class="pull-right" title="Edit">
+                    <li class="dropdown hidden-xs">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+                            <i class="fa fa-cog" >&nbsp;</i><b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" style="min-width:auto;font-size: 11px;margin: 2px -75px; ">
+                            <li><a  onclick="editAffiliatesmodal('<?php print $each_data['id']; ?>');" > <i class="fa fa-pencil-square-o"></i>Edit Affiliates</a></li>
+                            <li><a  onclick="Editvehiclemodal('<?php print $each_data['id']; ?>');" > <i class="fa fa-pencil-square-o"></i>Edit Vehicles</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
 
     <?php endforeach; ?>
 <?php else: ?>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color:red;margin-top: 10px;text-align:center;color:red;font-weight:bold;padding:5px;font-size:13px;">Data Not available</div></td>
 <?php endif; ?>
-    
+
+
+<script>
+$(document).ready(function (){
+   $(".totalResult").html(<?php echo count($data); ?>+" Records Found") 
+});
+</script>
