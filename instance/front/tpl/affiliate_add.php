@@ -26,7 +26,7 @@ if (isset($affiliates_edit) && !empty($affiliates_edit)) {
 }
 ?>
 <div class="modal-content" style="width:140%;" >
-    <div class="modal-header" style="background-color: #EAEAEA;">
+    <div class="modal-header" style="">
         <?php if ($affiliates_id > 0): ?>
             <b>Edit Affiliate</b>
         <?php else: ?>
@@ -168,7 +168,7 @@ if (isset($affiliates_edit) && !empty($affiliates_edit)) {
             </div>
         </div> 
     </div><!-- /.modal-content -->
-    <div class="modal-footer" style="background-color: #EAEAEA;height:55px;">
+    <div class="modal-footer" style="height:55px;">
         <div style="margin-top:-3px;">
             <input type="hidden" name="fields[affiliates_id]" id="affiliates_id" value="<?php print $affiliates_id; ?>">
             <?php if ($affiliates_id > 0) { ?>

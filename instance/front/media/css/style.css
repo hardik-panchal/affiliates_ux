@@ -1027,3 +1027,9 @@ label.error,td.error{
     font-size: 12px !important;
     padding-left: 15px !important;
 }
+.modal-header{
+    background-color: #EEE;
+}
+.modal-footer{
+    background-color: #eee;
+}

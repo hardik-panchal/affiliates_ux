@@ -112,7 +112,7 @@
                 </div>
             </div>
 
-            <div >
+            <div style="margin-top:3px;" >
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 affBoxLinks" style="font-size: 11px;;" >
 
                     <a onclick="viewImage('<?php print $each_data['id']; ?>');" style="cursor: pointer;">Vehicle Photos </a>&nbsp;|&nbsp;

@@ -27,11 +27,11 @@
 </div>
 
 <!--START : WAIT MODAL-->
-<div class="modal fade modal-3d-flip-horizontal modal-sm" id="waitModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div style="width:100%" class="modal fade modal-3d-flip-horizontal modal-sm" id="waitModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width:251px;">
         <div class="modal-content" >
             <div class="modal-body" style="color: #666;">
-                <strong style="text-transform: uppercase;font-size: 20px;">Please Wait </strong><i class="fa fa-refresh fa-spin fa-2x"></i> 
+                <strong style="text-transform: uppercase;font-size: 12px;">Please Wait &nbsp;</strong><i class="fa fa-refresh fa-spin"></i> 
             </div>
         </div>
     </div>
@@ -56,13 +56,13 @@
 <div class="modal fade" id="vehicalImage" >
     <div class="modal-dialog" id="image_content">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #EAEAEA;">
+            <div class="modal-header" >
                 <b>Image</b>
             </div>
             <div class="modal-body ">
                 <iframe src="<?php echo _U . "blank.txt"; ?>" style=" border: medium none;width: 100%;"></iframe> 
             </div>
-            <div class="modal-footer" style="background-color: #EAEAEA;height:55px;">
+            <div class="modal-footer" style="height:55px;">
                 <div style="margin-top:-3px;">                  
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
