@@ -11,8 +11,8 @@
         updateSearchCount("<?php print count($data); ?>");
     });
 
-    function updateSearchCount(count){
-       $(".totalResult").html(count + " Affiliates Found!") 
+    function updateSearchCount(count) {
+        $(".totalResult").html(count + " Affiliates Found!")
     }
     function sort(sortBy) {
         search(sortBy);
@@ -120,6 +120,7 @@
     }
 
     function viewImage(affiliateId) {
+        $("#imageGallary").attr("src", "<?php echo _U . "image/"; ?>" + affiliateId);
         $("#vehicalImage").modal('show');
         /* $.ajax({
          url: _U + 'home',

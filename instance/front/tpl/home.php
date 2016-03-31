@@ -56,17 +56,11 @@
 <div class="modal fade" id="vehicalImage" >
     <div class="modal-dialog" id="image_content">
         <div class="modal-content">
-            <div class="modal-header" >
-                <b>Image</b>
-            </div>
+           
             <div class="modal-body ">
-                <iframe src="<?php echo _U . "blank.txt"; ?>" style=" border: medium none;width: 100%;"></iframe> 
+                <iframe src="" id="imageGallary" style=" border: medium none;width: 100%;height: 400px;"></iframe> 
             </div>
-            <div class="modal-footer" style="height:55px;">
-                <div style="margin-top:-3px;">                  
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
+           
         </div>
     </div>
 </div>

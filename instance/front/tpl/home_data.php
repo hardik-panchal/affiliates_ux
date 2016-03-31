@@ -114,10 +114,20 @@
 
             <div style="margin-top:3px;" >
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 affBoxLinks" style="font-size: 11px;;" >
-
-                    <a onclick="viewImage('<?php print $each_data['id']; ?>');" style="cursor: pointer;">Vehicle Photos </a>&nbsp;|&nbsp;
+                    <ul  title="Photos" style="list-style: none;cursor: pointer;padding-left: 0px;width: 5%;float: left;">
+                        <li class="dropdown hidden-xs">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:black;" >
+                               Photos<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu" style="min-width:auto;font-size: 11px;">
+                                <li style="cursor: pointer;"><a  onclick="editAffiliatesmodal('<?php print $each_data['id']; ?>');" > <i class="fa fa-pencil-square-o"></i>Send Photos</a></li>
+                                <li style="cursor: pointer;"><a  onclick="viewImage('<?php print $each_data['id']; ?>');" > <i class="fa fa-pencil-square-o"></i>View Photos</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!--<a onclick="viewImage('<?php print $each_data['id']; ?>');" style="cursor: pointer;">Vehicle Photos </a>&nbsp;|&nbsp;-->
                     <a onclick="viewInsurance('<?php print $each_data['id']; ?>');" style="cursor: pointer;">Insurance Copy </a>
-                    <ul class="pull-right" title="Edit" style="list-style: none">
+                    <ul class="pull-right" title="Edit" style="list-style: none;cursor: pointer;">
                         <li class="dropdown hidden-xs">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:black;" >
                                 <i class="fa fa-cog" >&nbsp;</i><b class="caret"></b>
