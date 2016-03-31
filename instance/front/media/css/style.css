@@ -1033,3 +1033,10 @@ label.error,td.error{
 .modal-footer{
     background-color: #eee;
 }
+#header_customer_name{
+    font-family: 'Satisfy', cursive;
+    font-size:28px;
+    padding: 12px 0;
+    font-weight: bold;
+    color:white;
+}
