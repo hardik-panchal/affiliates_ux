@@ -116,11 +116,11 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 affBoxLinks" style="font-size: 11px;;" >
                     <ul  title="Photos" style="list-style: none;cursor: pointer;padding-left: 0px;width: 5%;float: left;">
                         <li class="dropdown hidden-xs">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:black;" >
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:#65A9E7;" >
                                Photos<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu" style="min-width:auto;font-size: 11px;">
-                                <li style="cursor: pointer;"><a  onclick="editAffiliatesmodal('<?php print $each_data['id']; ?>');" > <i class="fa fa-pencil-square-o"></i>Send Photos</a></li>
+                                <li style="cursor: pointer;"><a  onclick="sendImage('<?php print $each_data['id']; ?>');" > <i class="fa fa-pencil-square-o"></i>Send Photos</a></li>
                                 <li style="cursor: pointer;"><a  onclick="viewImage('<?php print $each_data['id']; ?>');" > <i class="fa fa-pencil-square-o"></i>View Photos</a></li>
                             </ul>
                         </li>

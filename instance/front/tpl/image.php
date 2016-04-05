@@ -9,11 +9,28 @@
         Cancel Uploading Vehicle Image
     </div>
 </div>
+
+<div class="container imageGallry">
+    <div class="row">
+        <h3>Vehicle Images</h3>
+        <p>
+            <?php
+            // $imageData = explode(",", $image["image"]);
+            foreach ($image as $value) {
+                ?>
+                <a class="fancybox-thumbs xxx"  data-fancybox-group="thumb" href="<?php echo _MEDIA_URL . "uploads/" . $value['file_name'] ?>">
+                    <img src="<?php echo _MEDIA_URL . "uploads/" . $value['file_name'] ?>" alt="" style="width: 45%;margin: 10px;float: left;"/>
+                </a>
+            <?php } ?>
+        </p>
+
+    </div> <!-- row / end -->
+</div> <!-- container / end -->
 <div id="fillData" style="display: none;">
     <form action='<?php echo _U . "image/" . $urlArgs[0]; ?>' method="post" enctype="multipart/form-data">
 
         <div style="margin: 10px;">
-            <div style="float: left;">Select Vehicle : </div>
+            <div style="float: left;padding: 5px;">Select Vehicle : </div>
             <div style="float: left;">
                 <select name="vehicle" class="form-control">
                     <?php foreach ($vehicle as $value) { ?>
@@ -23,78 +40,61 @@
             </div> 
         </div>
         <div style="clear: both;">
-        <div style="margin: 10px;">
-            <div style="float: left;">Select Image : </div>
-            <input type="file" name="image" size="25" class="form-group btn " style="float: left;border-radius: 0px; "/>
-        </div>
+            <div style="margin: 10px;">
+                <div style="float: left;padding: 5px;">Select Image : </div>
+                <input type="file" name="image" size="25" class="form-group btn " style="float: left;border-radius: 0px; "/>
+            </div>
             <div style="clear: both;">
-        <div style="margin: 10px;"> 
-            <input type="submit" name="submit" value="Upload" class="form-group btn" style="font-weight: bold;border-radius: 0px;"/>
-        </div> 
-        <div style="clear: both;"></div>
-        <input type="hidden" name="id" value="<?php echo $urlArgs[0] ?>">
-    </form>
-</div>
+                <div  > 
+                    <input type="submit" name="submit" value="Upload" class="form-group btn" style="font-weight: bold;border-radius: 0px;background-color: #65A9E7;color: white;margin-left: 15px;"/>
+                </div> 
+                <div style="clear: both;"></div>
+                <input type="hidden" name="id" value="<?php echo $urlArgs[0] ?>">
+                </form>
+            </div>
 
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#btnUpload").click(function () {
+                        $(".imageGallry").hide();
+                        $("#fillData").show();
+                        $("#btnDeleteUpload").show();
+                        $("#btnUpload").parent().hide();
+                    });
+                    $("#btnDeleteUpload").click(function () {
+                        $(".imageGallry").show();
+                        $("#fillData").hide();
+                        $("#btnDeleteUpload").hide();
+                        $("#btnUpload").parent().show();
+                    });
+                    $('.fancybox').fancybox();
+                    ;
+                    /*
+                     *  Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+                     */
 
-<div class="container imageGallry">
-    <div class="row">
-        <h3>Vehicle Images</h3>
-        <p>
-            <?php
-            $imageData = explode(",", $image["image"]);
-            foreach ($imageData as $value) {
-                ?>
-                <a class="fancybox-thumbs xxx"  data-fancybox-group="thumb" href="<?php echo _MEDIA_URL . "uploads/" . $value ?>">
-                    <img src="<?php echo _MEDIA_URL . "uploads/" . $value ?>" alt="" style="width: 45%;margin: 10px;float: left;"/>
-                </a>
-            <?php } ?>
-        </p>
-
-    </div> <!-- row / end -->
-</div> <!-- container / end -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#btnUpload").click(function () {
-            $(".imageGallry").hide();
-            $("#fillData").show();
-            $("#btnDeleteUpload").show();
-            $("#btnUpload").parent().hide();
-        });
-        $("#btnDeleteUpload").click(function () {
-            $(".imageGallry").show();
-            $("#fillData").hide();
-            $("#btnDeleteUpload").hide();
-            $("#btnUpload").parent().show();
-        });
-        $('.fancybox').fancybox();
-        ;
-        /*
-         *  Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
-         */
-
-        $('.fancybox-thumbs').fancybox({
-            prevEffect: 'none',
-            nextEffect: 'none',
-            closeBtn: true,
-            arrows: false,
-            nextClick: true,
-            helpers: {
-                thumbs: {
-                    width: 50,
-                    height: 50
+                    $('.fancybox-thumbs').fancybox({
+                        prevEffect: 'none',
+                        nextEffect: 'none',
+                        closeBtn: true,
+                        arrows: false,
+                        nextClick: true,
+                        helpers: {
+                            thumbs: {
+                                width: 50,
+                                height: 50
+                            }
+                        }
+                    }).trigger("click");
+                });
+            </script>
+            <style type="text/css">
+                .fancybox-custom .fancybox-skin {
+                    box-shadow: 0 0 50px #222;
                 }
-            }
-        }).trigger("click");
-    });
-</script>
-<style type="text/css">
-    .fancybox-custom .fancybox-skin {
-        box-shadow: 0 0 50px #222;
-    }
 
-    body {
-        max-width: 700px;
-        margin: 0 auto;
-    }
-</style>
+                body {
+                    max-width: 700px;
+                    margin: 0 auto;
+                }
+            </style>

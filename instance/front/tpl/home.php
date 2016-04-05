@@ -53,7 +53,7 @@
 
 <!--START : VEHICLE IMAGE MODAL-->
 <div class="modal fade" id="vehicalImage" >
-    <div class="modal-dialog" id="image_content">
+    <div class="modal-dialog" >
         <div class="modal-content">
            
             <div class="modal-body ">
@@ -64,6 +64,20 @@
     </div>
 </div>
 <!--STOP : VEHICLE IMAGE MODAL-->
+
+<!--START : VEHICLE IMAGE SEND MODAL-->
+<div class="modal fade" id="vehicalImageSend" >
+    <div class="modal-dialog" style="width: 800px">
+        <div class="modal-content">
+           
+            <div class="modal-body ">
+                <iframe src="" id="imageSend" style=" border: medium none;width: 100%;height: 400px;"></iframe> 
+            </div>
+           
+        </div>
+    </div>
+</div>
+<!--STOP : VEHICLE IMAGE SEND MODAL-->
 
 <!--START : INSURANCE MODAL-->
 <div class="modal fade" id="insurance" >

@@ -34,7 +34,17 @@
             $(this).hide();
             $("#hideSummary").show();
         });
+
     });
+    function countVehicle() {
+//        if ($("#PUDO").prop("checked")) {
+            var pax = $("#Passenger").val();
+            var capacity = $("#vehicle").val();
+            if (capacity != 1) {
+                $("#vehicle_no").val(Math.ceil(pax / capacity));
+            }
+//        }
+    }
     function paxBlur() {
         var pax = $("#Passenger").val();
         var load = $("#paxLoad").val();
@@ -136,27 +146,6 @@
         $("#luggageUnloading").html("Luggage Unloading Time : <b>" + unloadMsg + " </b>");
     }
 
-//    $("#drop").blur(function () {
-//        var latLngA = '';
-//        var latLngB = '';
-//        var geocoder = new google.maps.Geocoder();
-//        var address = $("#pickStagging").val();
-//        geocoder.geocode({'address': address}, function (results, status) {
-//            if (status == google.maps.GeocoderStatus.OK) {
-//                latLngA = results;
-//            }
-//        });
-//
-//        var geocoder = new google.maps.Geocoder();
-//        var address = $("#drop").val();
-//        geocoder.geocode({'address': address}, function (results, status) {
-//            if (status == google.maps.GeocoderStatus.OK) {
-//                latLngB = results;
-//            }
-//        });
-//        var distance = google.maps.geometry.spherical.computeDistanceBetween(latLngA, latLngB);
-//        console.log(distance);
-//    });
 
 </script>
 

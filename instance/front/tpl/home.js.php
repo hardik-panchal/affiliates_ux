@@ -122,14 +122,12 @@
     function viewImage(affiliateId) {
         $("#imageGallary").attr("src", "<?php echo _U . "image/"; ?>" + affiliateId);
         $("#vehicalImage").modal('show');
-        /* $.ajax({
-         url: _U + 'home',
-         data: {image: 1, id: affiliateId},
-         success: function (r) {
-         $("#image_content").html(r);
-         $("#vehicalImage").modal('show');
-         }
-         });*/
+       
+    }
+    function sendImage(affiliateId) {
+        $("#imageSend").attr("src", "<?php echo _U . "image_send/"; ?>" + affiliateId);
+        $("#vehicalImageSend").modal('show');
+       
     }
     function viewInsurance(affiliateId) {
         $.ajax({

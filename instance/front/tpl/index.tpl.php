@@ -16,7 +16,7 @@
         <div class="" >  
             <?php
             if ($no_visible_elements) :
-                if ($modulePage == 'login.php') {
+                if ($modulePage == 'login.php' || $modulePage == 'output.php' ) {
                     if (!(@include $modulePage)) :
                         include "404.php";
                     endif;

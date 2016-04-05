@@ -78,7 +78,7 @@
                 </div>
 
                 <div class="page-copyright page-copyright-inverse">
-                    <p>© <?php print date('Y');?>. All RIGHT RESERVED BiOptimizers</p>
+                    <p>© <?php print date('Y');?>. All RIGHT RESERVED Brilliant</p>
 
                 </div>
             </div>

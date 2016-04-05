@@ -3,7 +3,7 @@
 //error_reporting(E_ALL);
 $auth_pages = array();
 $auth_pages[] = "home";
-$auth_pages[] = "supplements";
+$auth_pages[] = "record";
 //$auth_pages[] = "api_settings";
 
 
