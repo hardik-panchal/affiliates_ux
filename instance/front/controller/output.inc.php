@@ -11,7 +11,11 @@ $paxCapacity = $_REQUEST['fields']['Vehicle'] * $vehicle;
 $roundTrip = $_REQUEST['fields']['Passenger'] / $paxCapacity;
 
 $roundTrip = ceil($roundTrip);
-$TotalTrip = $roundTrip + ($roundTrip - 1);
+if ($_REQUEST['fields']['Transportation'] == 'Shuttle') {
+    $TotalTrip = $roundTrip + ($roundTrip == 1 ? 1 : ($roundTrip - 1));
+} else {
+    $TotalTrip = $roundTrip + ($roundTrip - 1);
+}
 $totalPax = $_REQUEST['fields']['Passenger'];
 $paxRmaining = $totalPax;
 $paxRmaining1 = $totalPax;
@@ -41,7 +45,13 @@ $result = json_decode($result, true);
 $distance = $result['routes'][0]['legs'][0]['distance']['text'];
 $time = ceil(intval($result['routes'][0]['legs'][0]['duration']['value']) / 60);
 
-$travelM = $time;
+if ($_REQUEST['fields']['Transportation'] == 'Shuttle') {
+    //$travelM = $time * 2;
+
+    $travelM = $time;
+} else {
+    $travelM = $time;
+}
 
 
 

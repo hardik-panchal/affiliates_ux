@@ -17,9 +17,9 @@ if ($_REQUEST['id'] == $urlArgs[0]) {
         if (in_array($file_ext, $expensions) === false) {
             $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
         }
-        if ($file_size > 2097152) {
-            $errors[] = 'File size must be excately 2 MB';
-        }
+//        if ($file_size > 2097152) {
+//            $errors[] = 'File size must be excately 2 MB';
+//        }
         if (empty($errors) == true) {
             $name = $_FILES["image"]["name"];
             $ext = end((explode(".", $name))); # extra () to prevent notice

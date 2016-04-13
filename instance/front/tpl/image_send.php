@@ -2,7 +2,7 @@
     <div class=" form-group" style="padding: 2%;border-radius: 0px;background-color: #65A9E7;font-weight: bold;color: white; position: fixed;
          top: 0;
          width: 100%;" >
-        <span style="font-size: 16px;">Send Vehicle Images To Customer</span>
+        <span style="font-size: 16px;position: relative;top: 5px;">Send Vehicle Images To Customer</span>
         <span class="btn btn-success pull-right"  onclick="window.parent.$('#vehicalImageSend').modal('hide');" >Cancel</span>
         <span class="btn btn-success pull-right" id="sendMail" style="margin-right: 10px;">Send Mail</span>
 

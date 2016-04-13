@@ -1,3 +1,5 @@
+
+
 <!--//search-->
 <div  class="col-lg-12 " style="margin-top: 50px;">
     <div class="col-lg-10" style="padding:0px">
@@ -27,10 +29,10 @@
 
 <!--START : WAIT MODAL-->
 <div style="width:100%" class="modal fade modal-3d-flip-horizontal modal-sm" id="waitModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:251px;">
+    <div class="modal-dialog" style="width:150px;">
         <div class="modal-content" >
             <div class="modal-body" style="color: #666;">
-                <strong style="text-transform: uppercase;font-size: 12px;">Please Wait &nbsp;</strong><i class="fa fa-refresh fa-spin"></i> 
+                <strong style="text-transform: uppercase;font-size: 12px;">Please Wait... &nbsp;</strong><i class="fa fa-refresh fa-spin"></i> 
             </div>
         </div>
     </div>

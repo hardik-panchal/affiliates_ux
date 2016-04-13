@@ -1,4 +1,4 @@
-<div class="modal-content" style="width:140%;" >
+<div class="modal-content" style="" >
     <div class="modal-header" style="background-color: #EAEAEA;">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <?php if ($affiliates_edit['carrier'] != ''): ?>
@@ -7,7 +7,7 @@
             <b>Add Insurance Detail</b>
         <?php endif; ?>
     </div>
-    <div class="modal-body ">
+    <div class="modal-body " style="height: 205px;">
         <form id="insuranceForm" method="post" action="" enctype="multipart/form-data">
             <input type="hidden" value="<?php echo $id; ?>" name="field[id]">
             <div style="margin-top:7px;" class="col-lg-12">

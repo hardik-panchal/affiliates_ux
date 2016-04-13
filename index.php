@@ -25,7 +25,7 @@ define('SMTP_EMAIL_USER_PASSWORD_QUOTE', '$quotes$'); # smtp service password fo
 define('DB_HOST', 'localhost');
 define('DB_PASSWORD', '');
 define('DB_UNAME', 'root');
-define('DB_NAME', 'brilliant_affiliates');
+define('DB_NAME', 'brilliant');
 
 
 # Flag to help partison development and live environment
