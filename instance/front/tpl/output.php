@@ -1,4 +1,14 @@
 <style>
+    .gradient{
+        background: rgba(255,255,255,1);
+        background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+        background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+    }
     .block {
         position: absolute;
         //  background-color: #abc;
@@ -33,20 +43,20 @@
 
 <div class="row" style="width: 100%;">
     <div style="width: 31%;float: left;margin: 2px;margin-left: 3%;">
-        <div style="float: left;padding: 15px;font-weight: bold;text-align: center;border: 1px dotted #DADADA;width: 100%;padding: 5px;background-color:gray;color: white;" >
-            <i class="fa fa-group fa-4x" style="color:white;"></i><br/>
+        <div style="float: left;padding: 15px;font-weight: bold;text-align: center;border: 1px dotted #DADADA;width: 100%;padding: 5px;background-color:gray;color: gray;" class="gradient">
+            <i class="fa fa-group fa-4x" style="color:gray;"></i><br/>
             Total Passengers : <?php echo $_REQUEST['fields']['Passenger']; ?>
         </div>
     </div>
     <div style="width: 31%;float: left;margin: 2px 15px;">
-        <div style="float: left;font-weight: bold;text-align: center;border: 1px dotted #DADADA;width: 100%;padding: 5px;background-color: gray;color: white;" >
-            <i class="fa fa-arrows-h fa-4x" style="color:white;"></i><br/>
+        <div style="float: left;font-weight: bold;text-align: center;border: 1px dotted #DADADA;width: 100%;padding: 5px;background-color: gray;color: gray;" class="gradient">
+            <i class="fa fa-arrows-h fa-4x" style="color:gray;"></i><br/>
             Distance : <?php echo $distance; ?>
         </div>
     </div>
     <div style="width: 31%;float: left;margin: 2px;">
-        <div style="float: left;font-weight: bold;text-align: center;border: 1px dotted #DADADA;width: 100%;padding: 5px;background-color: gray;color: white; " >
-            <i class="fa fa-bus fa-4x" style="color:white; " ></i><br/>
+        <div style="float: left;font-weight: bold;text-align: center;border: 1px dotted #DADADA;width: 100%;padding: 5px;background-color: gray;color: gray; " class="gradient">
+            <i class="fa fa-bus fa-4x" style="color:gray; " ></i><br/>
             # Vehicles : <?php echo $vehicle ?>
         </div>
     </div>
@@ -74,9 +84,9 @@ for ($i = 1; $i <= $roundTrip; $i++) {
     <div style="color: #8abd0d;  font-size: 40px;font-size: 18px;font-weight: bold;margin-bottom: 10px;padding: 10px;">
         Trip <?php echo $i; ?>
     </div>
-    <div class="block"><img src="<?php echo _MEDIA_URL ?>img/motor1.png" style="background-color: white;color: maroon;padding: 5px;" width="70"/></div>
+    <div class="block"><img src="<?php echo _MEDIA_URL ?>img/motor4.png" style="background-color: white;color: maroon;padding: 5px;" width="70"/></div>
     <div style="display: block !important;opacity: 1;" class="col-lg-2 hideStage pickup" >
-        <i class="fa fa-user fa-4x" style="color: #8abd0d;  font-size: 40px;"></i><br/>
+        <i class="fa fa-home fa-4x" style="color: #8abd0d;  font-size: 50px;"></i><br/>
         Pickup
     </div><?php
     $dropS = explode(":", $_REQUEST['fields']['dropStagging']);
@@ -98,8 +108,8 @@ for ($i = 1; $i <= $roundTrip; $i++) {
     }
     ?>
     <div style="" class="col-lg-2 hideStage stagging" >
-        <i class="fa fa-plus fa-4x" style="color: maroon;  font-size: 40px; " ></i><br/>
-        Staging  : <?php
+        <i class="fa fa-plus fa-4x" style="color: maroon;  font-size: 30px; " ></i><br/>
+        Staging:<br/><span style="font-weight: normal;"> <?php
         if ($staggingH != 00) {
             echo $staggingH . "hr ";
         } else {
@@ -109,9 +119,11 @@ for ($i = 1; $i <= $roundTrip; $i++) {
         } else {
             echo '';
         }
-        echo "<br>";
-        echo $sTimeH . ":" . $sTimeM;
+       
+        //echo "<br>";
+        //echo $sTimeH . ":" . $sTimeM;
         ?>
+        </span>
     </div>
     <?php
     if ($paxRmaining > $paxCapacity) {
@@ -145,7 +157,7 @@ for ($i = 1; $i <= $roundTrip; $i++) {
 
     $sTimeH+=$loadingH;
     $sTimeM+=$loadingM;
-    $sTimeS = $loadingS;
+    $sTimeS+= $loadingS;
     if ($sTimeS >= 60) {
         $temp = $sTimeS % 60;
         $sTimeM+= floor($sTimeS / 60);
@@ -158,43 +170,55 @@ for ($i = 1; $i <= $roundTrip; $i++) {
     }
     ?>
     <div style="" class="col-lg-2 hideStage loading" >
-        <i class="fa fa-arrow-right fa-4x" style="color: maroon;  font-size: 40px; " ></i><br/>
-        Loading time : <?php
-    if ($loadingH != 00) {
-        echo $loadingH . "hr ";
-    } else {
-        echo '';
-    }
-    if ($loadingM != 00) {
-        echo $loadingM . "min ";
-    } else {
-        echo '';
-    }if ($loadingS != 00) {
-        echo $loadingS . "sec ";
-    } else {
-        echo '';
-    }
+        <i class="fa fa-arrow-right fa-4x" style="color: maroon;  font-size: 30px; " ></i><br/>
+        Loading time:<br/><span style="font-weight: normal;"> <?php
+        if ($loadingH != 00) {
+            echo $loadingH . "hr ";
+        } else {
+            echo '';
+        }
+        if ($loadingM != 00) {
+            echo $loadingM . "min ";
+        } else {
+            echo '';
+        }if ($loadingS != 00) {
+            echo $loadingS . "sec ";
+        } else {
+            echo '';
+        }
 
 
-    echo "<br>";
-    echo $sTimeH . ":" . $sTimeM.":".$sTimeS;
-    ?>
+        // echo "<br>";
+        // echo $sTimeH . ":" . $sTimeM . ":" . $sTimeS;
+        ?>
+        </span>
     </div>
 
-    <div style="width: 31%;" class="col-lg-2 hideStage travel">
-        <i class="fa fa-bus fa-4x" style="color: #8abd0d;  font-size: 40px; " ></i><br/>
-        Traveling time : <?php
-    if ($travelH != 00) {
-        echo $travelH . "hr ";
-    } else {
-        echo '';
-    }
-    if ($travelM != 00) {
-        echo $travelM . "min ";
-    } else {
-        echo '';
-    }
-    ?>
+    <div style="width: 49%;" class="col-lg-2 hideStage travel">
+        <i class="fa fa-bus fa-4x" style="color: #8abd0d;  font-size: 30px; " ></i><br/>
+        Traveling time: <br/><span style="font-weight: normal;"><?php
+        if ($travelH != 00) {
+            echo $travelH . "hr ";
+        } else {
+            echo '';
+        }
+        if ($travelM != 00) {
+            echo $travelM . "min ";
+        } else {
+            echo '';
+        }
+
+        $sTimeH+=$travelH;
+        $sTimeM+=$travelM;
+
+        if ($sTimeM >= 60) {
+            $temp = $sTimeM % 60;
+            $sTimeH+= floor($sTimeM / 60);
+            $sTimeM = $temp;
+        }
+        // echo "<br>";
+        // echo $sTimeH . ":" . $sTimeM . ":" . $sTimeS;
+        ?></span>
     </div>
 
     <?php
@@ -214,37 +238,54 @@ for ($i = 1; $i <= $roundTrip; $i++) {
     }
     if ($unloadingM >= 60) {
         $temp = $unloadingM % 60;
-        $unloadingM+= floor($unloadingM / 60);
+        $unloadingH+= floor($unloadingM / 60);
         $unloadingM = $temp;
+    }
+
+
+    $sTimeH+=$unloadingH;
+    $sTimeM+=$unloadingM;
+    $sTimeS+=$unloadingS;
+
+    if ($sTimeS >= 60) {
+        $temp = $sTimeS % 60;
+        $sTimeM+= floor($sTimeS / 60);
+        $sTimeS = $temp;
+    }
+    if ($sTimeM >= 60) {
+        $temp = $sTimeM % 60;
+        $sTimeH+= floor($sTimeM / 60);
+        $sTimeM = $temp;
     }
     ?>
 
     <div style="" class="col-lg-2 hideStage unloading" >
-        <i class="fa fa-arrow-right fa-4x" style="color: maroon;  font-size: 40px; " ></i><br/>
-        Unloading time : <?php
-    if ($unloadingH != 00) {
-        echo $unloadingH . "hr ";
-    } else {
-        echo '';
-    }
-    if ($unloadingM != 00) {
-        echo $unloadingM . "min ";
-    } else {
-        echo '';
-    }if ($unloadingS != 00) {
-        echo $unloadingS . "sec ";
-    } else {
-        echo '';
-    }
-
-
-    //  echo $unloadingH . ":" . $unloadingM . ":" . $unloadingS; 
-    ?>
+        <i class="fa fa-arrow-right fa-4x" style="color: maroon;  font-size: 30px; " ></i><br/>
+        Unloading time:<br/><span style="font-weight: normal;"> <?php
+        if ($unloadingH != 00) {
+            echo $unloadingH . "hr ";
+        } else {
+            echo '';
+        }
+        if ($unloadingM != 00) {
+            echo $unloadingM . "min ";
+        } else {
+            echo '';
+        }if ($unloadingS != 00) {
+            echo $unloadingS . "sec ";
+        } else {
+            echo '';
+        }
+        //echo "<br>";
+        //echo $sTimeH . ":" . $sTimeM . ":" . $sTimeS;
+        //  echo $unloadingH . ":" . $unloadingM . ":" . $unloadingS; 
+        ?>
+        </span>
     </div>
 
 
     <div style="" class="col-lg-2 hideStage dropoff" >
-        <i class="fa fa-user fa-4x" style="color: #8abd0d;  font-size: 40px; " ></i><br/>
+        <i class="fa fa-building fa-4x" style="color: #8abd0d;  font-size: 50px; " ></i><br/>
         Dropoff
     </div>
 
@@ -300,20 +341,20 @@ for ($i = 1; $i <= $roundTrip; $i++) {
         <div style="color: #8abd0d;  font-size: 40px;font-size: 18px;font-weight: bold;margin-bottom: 10px;padding:10px 10px 20px 10px">
             Return Trip <?php echo $i; ?>
         </div>
-        <div class="blockReturn" style="display: none;"><img src="<?php echo _MEDIA_URL ?>img/motor2.png" style="background-color: white;color: maroon;padding: 5px;" width="70"/></div>
+        <div class="blockReturn" style="display: none;"><img src="<?php echo _MEDIA_URL ?>img/motor3.png" style="background-color: white;color: maroon;padding: 5px;" width="70"/></div>
         <div style="width: 22%;display: block;" class="col-lg-2 hideStage rPickup" >
-            <i class="fa fa-user fa-4x" style="color: #8abd0d;  font-size: 40px;"></i><br/>
+            <i class="fa fa-home fa-4x" style="color: #8abd0d;  font-size: 50px;"></i><br/>
             Pickup
         </div>
 
         <div style="width: 50%;display: block;" class="col-lg-2 hideStage rTravel">
             <div style="float: left;">
-                <i class="fa fa-arrow-left fa-4x" style="color: maroon;  font-size: 40px; " ></i>
+                <i class="fa fa-arrow-left fa-4x" style="color: maroon;  font-size: 30px; " ></i>
             </div>
             <div style="float: left;margin-left: 30%;">
-                <i class="fa fa-bus fa-4x" style="color: #8abd0d;  font-size: 40px; " ></i><br/>
+                <i class="fa fa-bus fa-4x" style="color: #8abd0d;  font-size: 30px; " ></i><br/>
 
-                Traveling time : <?php
+                Traveling time:<br/><span style="font-weight: normal;"> <?php
         if ($travelH != 00) {
             echo $travelH . "hr ";
         } else {
@@ -324,17 +365,28 @@ for ($i = 1; $i <= $roundTrip; $i++) {
         } else {
             echo '';
         }
+        $sTimeH+=$travelH;
+        $sTimeM+=$travelM;
+
+        if ($sTimeM >= 60) {
+            $temp = $sTimeM % 60;
+            $sTimeH+= floor($sTimeM / 60);
+            $sTimeM = $temp;
+        }
+        // echo "<br>";
+        //  echo $sTimeH . ":" . $sTimeM . ":" . $sTimeS;
         // echo $travelH . ":" . $travelM; 
         ?>
+                </span>
             </div>
             <div style="float: right;">
-                <i class="fa fa-arrow-left fa-4x" style="color: maroon;  font-size: 40px; " ></i>
+                <i class="fa fa-arrow-left fa-4x" style="color: maroon;  font-size: 30px; " ></i>
             </div>
         </div>
 
 
         <div style="width: 22%;display: block;" class="col-lg-2 hideStage rDropoff">
-            <i class="fa fa-user fa-4x" style="color: #8abd0d;  font-size: 40px; " ></i><br/>
+            <i class="fa fa-building fa-4x" style="color: #8abd0d;  font-size: 50px; " ></i><br/>
             Dropoff
         </div>
         <div class="clearfix"></div>
@@ -360,6 +412,7 @@ for ($i = 1; $i <= $roundTrip; $i++) {
 
         </div>
     </div>
+    <div style="clear: both;"></div>
     <?php // } else {
     ?> 
     <!--            <div style="border-bottom: 5px solid #8ABD0D;color: #8abd0d;  font-size: 40px;font-size: 18px;font-weight: bold;margin-bottom: 10px;padding: 10px;">
@@ -370,18 +423,18 @@ for ($i = 1; $i <= $roundTrip; $i++) {
     <?php echo $_REQUEST['fields']['pickStagging']; ?>
                 </div>
                 <div style="float: left;font-weight: bold;text-align: center;" class="col-lg-2">
-                    <i class="fa fa-arrow-left fa-4x" style="color: maroon;  font-size: 40px; " ></i><br/>
+                    <i class="fa fa-arrow-left fa-4x" style="color: maroon;  font-size: 30px; " ></i><br/>
                 </div>
                 <div style="float: left;font-weight: bold;text-align: center;" class="col-lg-2">
-                    <i class="fa fa-bus fa-4x" style="color: #8abd0d;  font-size: 40px; " ></i><br/>
+                    <i class="fa fa-bus fa-4x" style="color: #8abd0d;  font-size: 30px; " ></i><br/>
                     Traveling time : <?php echo $travelH . ":" . $travelM; ?>
                 </div>
 
                 <div style="float: left;font-weight: bold;text-align: center;" class="col-lg-2">
-                    <i class="fa fa-arrow-left fa-4x" style="color: maroon;  font-size: 40px; " ></i><br/>
+                    <i class="fa fa-arrow-left fa-4x" style="color: maroon;  font-size: 30px; " ></i><br/>
                 </div>
                 <div style="float: left;font-weight: bold;text-align: center;" class="col-lg-2">
-                    <i class="fa fa-user fa-4x" style="color: #8abd0d;  font-size: 40px; " ></i><br/>
+                    <i class="fa fa-user fa-4x" style="color: #8abd0d;  font-size: 30px; " ></i><br/>
     <?php echo $_REQUEST['fields']['drop']; ?>
                 </div>
                 <div class="clearfix"></div>
@@ -413,7 +466,17 @@ for ($i = 1; $i <= $roundTrip; $i++) {
 ?>
 <div style="clear: both;"></div>
 
-<div  class="col-lg-12 final" style="display: none;width: 100%;padding: 10px;background-color: #93C616;color: white;text-align: center;font-weight: bold;font-size: 20px;color:8a8a8a;margin-top: 15px;margin-bottom: 10px;">
+<div  class="col-lg-12 final" style="display: none;
+
+      color: gray;
+      font-size: 18px;
+      font-weight: bold;
+
+      margin-top: 15px;
+
+      text-align: center;
+      width: 100%;
+      }">
     Total Time Needed For Flawless Transportation   <?php echo number_format($hour) . "hr " . $min . "min "; ?>
 </div>
 <hr>

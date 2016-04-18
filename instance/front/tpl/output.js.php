@@ -6,6 +6,7 @@
             $("#scrollView").show();
             window.parent.scrollTo(1500, 1500);
         });
+        $('body').css("background-color", "white");
 //        $("#more").click(function () {
         window.parent.scrollTo(700, 700);
         var f = 1;
@@ -13,75 +14,81 @@
 <?php if ($_REQUEST['fields']['Transportation'] == 'Shuttle') { ?>
 
             setTimeout(function () {
-                $(".block").animate({"left": "+=100px"}, "slow");
+                $(".block").animate({"left": "+=100px"}, 1000);
                 setTimeout(function () {
-                    $(".stagging").show();
+                    
                     $(".stagging").css("opacity", "1");
-                    $(".block").animate({"left": "+=180px"}, "slow");
+                    $(".block").animate({"left": "+=110px"}, 1000);
                     setTimeout(function () {
-                        $(".loading").show();
+                       
                         $(".loading").css("opacity", "1");
-                        $(".block").animate({"left": "+=310px"}, "slow");
+                        $(".block").animate({"left": "+=690px"}, 3000);
                         setTimeout(function () {
-                            $(".travel").show();
+                           
                             $(".travel").css("opacity", "1");
-                            $(".block").animate({"left": "+=310px"}, "slow");
+                            // $(".block").animate({"left": "+=310px"}, 1000);
                             setTimeout(function () {
-                                $(".unloading").show();
+                               
                                 $(".unloading").css("opacity", "1");
-                                $(".block").animate({"left": "+=140px"}, "slow");
+                                $(".block").animate({"left": "+=140px"}, 1000);
                                 setTimeout(function () {
-                                    $(".dropoff").show();
+                                    
                                     $(".dropoff").css("opacity", "1");
                                     $(".summary").show('slow');
                                     setTimeout(function () {
                                         $(".rTrip").show('fast');
                                         setTimeout(function () {
-                                            $(".blockReturn").show('fast');
+                                            $(".blockReturn").show('slow');
                                             $(".rPickup").css("opacity", "1");
                                             $(".rTravel").css("opacity", "1");
                                             $(".rDropoff").css("opacity", "1");
-                                            $(".returnSummary").show('slow');
-                                            $(".blockReturn").animate({"left": "-=1030px"}, "slow");
+                                           
+                                            $(".blockReturn").animate({"left": "-=1030px"}, 3000);
                                             setTimeout(function () {
-                                                $(".col-lg-2").show('slow');
+                                                 $(".returnSummary").show('slow');
                                                 $(".final").show('slow');
                                             }, 3000);
-                                        }, 2000);
+                                        }, 800);
                                     }, 2000);
-                                }, 2000);
-                            }, 2000);
-                        }, 2000);
-                    }, 2000);
-                }, 2000);
-            }, 2000);
+                                }, 800);
+                            }, 3000);
+                        }, 800);
+                    },800 );
+                }, 800);
+            }, 800);
 <?php } else { ?>
             setTimeout(function () {
-                $(".block").animate({"left": "+=100px"}, "slow");
+                $(".block").animate({"left": "+=100px"}, 1000);
                 setTimeout(function () {
-                    $(".stagging").show();
-                    $(".block").animate({"left": "+=100px"}, "slow");
+                   
+                    $(".stagging").css("opacity", "1");
+                    $(".block").animate({"left": "+=110px"}, 1000);
                     setTimeout(function () {
-                        $(".loading").show();
-                        $(".block").animate({"left": "+=310px"}, "slow");
+                       
+                        $(".loading").css("opacity", "1");
+                        $(".block").animate({"left": "+=690px"}, 3000);
                         setTimeout(function () {
-                            $(".travel").show();
-                            $(".block").animate({"left": "+=310px"}, "slow");
+                            
+                            $(".travel").css("opacity", "1");
+                           
                             setTimeout(function () {
-                                $(".unloading").show();
-                                $(".block").animate({"left": "+=200px"}, "slow");
+                               
+                                $(".unloading").css("opacity", "1");
+                                $(".block").animate({"left": "+=140px"}, 1000);
                                 setTimeout(function () {
-                                    $(".dropoff").show();
+                                    
+                                    $(".dropoff").css("opacity", "1");
+                                   
                                     setTimeout(function () {
-                                        $(".summary").show('slow');
+                                         $(".summary").show('slow');
                                         $(".final").show('slow');
                                     }, 3000);
-                                }, 2000);
-                            }, 2000);
-                        }, 2000);
-                    }, 2000);
-                }, 2000);
-            }, 2000);
+                                }, 800);
+                            }, 800);
+                        }, 800);
+                    }, 800);
+                }, 800);
+            }, 800);
 <?php } ?>
 //        });
     });</script>

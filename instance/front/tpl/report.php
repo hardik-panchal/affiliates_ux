@@ -15,12 +15,12 @@
         <h3>Type Of Transportation</h3>
         <div class="col-lg-12">
             <label class="col-lg-6 col-md-6 control-label" style="text-align: left;font-size: 15px;" >
-                <input type="radio" value="PUDO" id="PUDO"  name="fields[Transportation]"   class=" reset" checked="">  Pickup / Dropoff 
+                <input type="radio" value="PUDO" id="PUDO"  name="fields[Transportation]"   class=" reset" >  Pickup / Dropoff 
             </label>    
         </div>
         <div class="col-lg-12">
             <label class="col-lg-6 col-md-6 control-label" style="text-align: left;font-size: 15px;" >
-                <input type="radio"  value="Shuttle"  name="fields[Transportation]"   class=" reset"> Shuttle
+                <input type="radio"  value="Shuttle"  name="fields[Transportation]"   class=" reset" checked=""> Shuttle
             </label>
         </div>
         <div class="clearfix"></div>
@@ -84,8 +84,8 @@
             <div class="form-group col-lg-12">
                 <div style="padding: 15px;">
                     <label style="text-align: left;font-size: 15px;" class="col-lg-4 col-md-6 control-label" >Pickup Location</label>
-                    <div class="col-lg-7 col-md-6">
-                        <input type="text" placeholder="Enter Pickup Location" value="" id="pickStagging" name="fields[pickStagging]" class="form-control reset">
+                    <div class="col-lg-12 col-md-6">
+                        <input type="text" placeholder="Enter Pickup Location" value="Empire State Building, 5th Avenue, New York, NY, United States" id="pickStagging" name="fields[pickStagging]" class="form-control reset">
                     </div>
                     <div class='clearfix'></div>
                 </div>
@@ -98,8 +98,8 @@
                 </div>
                 <div style="padding: 15px;">
                     <label style="text-align: left;font-size: 15px;" class="col-lg-4 col-md-6 control-label" >Dropoff Location </label>
-                    <div class="col-lg-7 col-md-6">
-                        <input type="text" placeholder="Enter Dropoff Location" value="" id="drop" name="fields[drop]" class="form-control reset">
+                    <div class="col-lg-12 col-md-6">
+                        <input type="text" placeholder="Enter Dropoff Location" value="10th Avenue, New York, NY, United States" id="drop" name="fields[drop]" class="form-control reset">
                     </div>
                     <div class='clearfix'> </div>     
                 </div>                                  
